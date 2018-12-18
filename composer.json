@@ -1,6 +1,7 @@
 {
     "name": "mora/core",
     "description": "The core classes of the Framework mora",
+    "license":"MIT",
     "authors": [
         {
             "name": "Sandratra Rambeloson",
