@@ -1,0 +1,18 @@
+<?php
+
+namespace {Project_Name}\View\Fragment;
+
+use Mora\Core\ViewFragment;
+
+class {name}View extends ViewFragment
+{
+    public function __construct($text1,$text2)
+    {
+        parent::__construct();
+        $this->data = [
+            "text1" => $text1,
+            "text2" => $text2
+        ];
+        $this->commit();
+    }
+}

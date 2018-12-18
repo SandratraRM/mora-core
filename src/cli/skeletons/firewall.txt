@@ -1,0 +1,22 @@
+<?php
+
+namespace {Project_Name}\Firewall;
+
+use Mora\Core\Control\Firewall;
+
+class {name}Firewall extends Firewall
+{
+    /**
+    * @return bool
+    */
+    public static function check()
+    {
+        //{check}
+        return ${condition};
+    }
+
+    public static function onFailed()
+    {
+        //{failed}
+    }
+}

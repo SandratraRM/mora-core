@@ -1,0 +1,28 @@
+{
+    "controller":{
+         "create" : "name action1[,action2...]",
+         "delete": "name",
+         "rename": "oldname newname",
+         "add_actions":"action1[,action2...]"
+    }
+       
+    ,
+    "database":[
+        "init"
+    ],
+    "firewall":[
+        "create","list","delete","rename","add_targets","remove_targets"
+    ],
+    "help":[
+        "all","command"
+    ],
+    "model":[
+        "create","execute"
+    ],
+    "route":[
+        "set","list","delete"
+    ],
+    "view":[
+        "fragment"
+    ]
+}

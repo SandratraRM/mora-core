@@ -1,0 +1,14 @@
+{
+    "welcome": "Bienvenue sur le cli du framework Mora",
+    "select_lang": "Entrer la langue:",
+    "usage": "Utilisation:",
+    "command": "commande",
+    "lang_changed_success": "La langue est d\u00e9finie sur 'Fran\u00e7ais'",
+    "firewall_add_success": "Le parefeu {name} a \u00e9t\u00e9 enregistr\u00e9 avec succ\u00e8s",
+    "firewall_check_comment": "Retourner la condition requise pour passer le parefeu",
+    "controller_create_desc": "Creer un controlleur et eventuellement ses actions.",
+    "rename_required_names": "Il faut saisir l'ancien et le nouveau nom.",
+    "firewall_not_found": "Le parefeu '{name}' est introuvable.",
+    "firewall_rename_success": "Le nom du parefeu {old} a \u00e9t\u00e9 chang\u00e9 en {new}.",
+    "firewall_name_conflict": "Le nom {name} est deja utilis\u0000 par un autre parefeu."
+}

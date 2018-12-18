@@ -1,0 +1,19 @@
+{
+    "name": "mora/core",
+    "description": "The core classes of the Framework mora",
+    "authors": [
+        {
+            "name": "Sandratra Rambeloson",
+            "email": "sandratrarambelosonm@gmail.com"
+        }
+    ],
+    "autoload" : {
+        "psr-4" : {
+            "Mora\\Core\\" : "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "php" :"^7.0"
+    }
+}
