@@ -19,5 +19,8 @@ class ControllerManager{
             $name = ucfirst(strtolower($params[0]));
             ControllerNew::new($name,$action);
         }
+        else {
+            ControllerNew::Interactive();
+        }
     }
 }

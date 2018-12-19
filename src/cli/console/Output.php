@@ -62,7 +62,7 @@ class Output{
             self::print(
                 "<blue>",
                 $text,
-                "<nc>\r\n"
+                "<nc>"
             );
         }
     }

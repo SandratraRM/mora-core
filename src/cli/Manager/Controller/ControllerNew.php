@@ -1,9 +1,9 @@
 <?php
 namespace Mora\Core\cli\Manager\Controller;
-
-use Mora\Core\cli\Helpers\SkeletonLoader;
 use Mora\Core\cli\Console\Output;
+use Mora\Core\cli\Helpers\Methods;
 use Mora\Core\cli\Console\CliStrings;
+use Mora\Core\cli\Helpers\SkeletonLoader;
 
 class ControllerNew{
     public static function new($name,$actions){
@@ -24,6 +24,10 @@ class ControllerNew{
             ControllerEdit::add_actions($filename,$actions);
         }
 
+    }
+    public static function Interactive(){
+        $name = Methods::ask("ask_controller_name");
+        echo $name;
     }
 
 }

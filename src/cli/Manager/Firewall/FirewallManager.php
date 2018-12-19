@@ -13,9 +13,10 @@ class FirewallManager{
     private static $mapping = [
         "list" => "listFirewall",
         "delete" => "unsetFirewall",
-        "rename" => "renameFirewall"
+        "rename" => "renameFirewall",
+        "create" => "setFirewall"
     ];
-    public static $default = "setFirewall";
+    public static $default = "Interactive";
 
     use ArgParser;
 
