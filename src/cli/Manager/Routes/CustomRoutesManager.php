@@ -5,7 +5,7 @@ use Mora\Core\cli\Helpers\ArgParser;
 use Mora\Core\Config\JsonConfigManager;
 
 class CustomRoutesManager{
-    private static $path = CONFIG . "/CustomRoutes.json";
+    public  static $path = CONFIG . "/CustomRoutes.json";
 
     private static $mapping = [
         "list" => "list",
@@ -26,7 +26,7 @@ class CustomRoutesManager{
         foreach($args as $arg){
             $keyvalue = explode(":",$arg);
             if(count($keyvalue) == 2){
-               $config->setConfig($keyvalue[0],$keyvalue[1]);
+               $config->setConfig($keyvalue[0],ucfirst(strtolower($keyvalue[1])));
             }
         }
         $config->writeConfig();

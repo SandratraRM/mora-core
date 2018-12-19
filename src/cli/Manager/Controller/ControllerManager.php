@@ -8,7 +8,7 @@ class ControllerManager{
         "create" => "createController",
         "delete" => "deleteController",
         "rename" => "renameController",
-        "addAction" => "add_Action"
+        "add_actions" => "add_Action"
     ];
     public static $default = "notFound";
     use ArgParser;
@@ -21,6 +21,12 @@ class ControllerManager{
         }
         else {
             ControllerNew::Interactive();
+        }
+    }
+    public static function deleteController($params){
+        if (isset($params[0])) {
+            $name = ucfirst(strtolower($params[0]));
+            ControllerDelete::delete($name);
         }
     }
 }

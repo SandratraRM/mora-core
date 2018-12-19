@@ -9,7 +9,7 @@ use Mora\Core\cli\Helpers\SkeletonLoader;
 
 class FirewallManager{
     
-    private static $configpath = CONFIG . "/Firewalls.json";
+    public  static $configpath = CONFIG . "/Firewalls.json";
     private static $mapping = [
         "list" => "listFirewall",
         "delete" => "unsetFirewall",
@@ -39,6 +39,9 @@ class FirewallManager{
             $fvalue [] = $value;
         }
         $conf->setConfig($fname,$fvalue);
+        if(!file_exists(FIREWALL)){
+            mkdir(FIREWALL);
+        }
         $path = FIREWALL . "/$fname" . "Firewall.php";
         if(!file_exists($path)){
             $data = [

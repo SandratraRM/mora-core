@@ -12,8 +12,7 @@ class ControllerNew{
         }
         $filename = CONTROLLER . "/$name" . "Controller.php";
         if (file_exists($filename)) {
-            Output::printWarning(CliStrings::get("controller_exists_prompt",["name"=>$name]));
-            $answer = trim(fgets(STDIN));
+            $answer = Methods::ask("controller_exists_prompt",["name"=>$name]);
             if ($answer != "yes") {
                 exit();
             }
@@ -27,7 +26,10 @@ class ControllerNew{
     }
     public static function Interactive(){
         $name = Methods::ask("ask_controller_name");
-        echo $name;
+        $name = ucfirst(strtolower($name));
+        $actions = ask("ask_controller_actions");
+        $actions = ($actions == "")? [] : explode(",",$actions);
+        self::new($name,$actions);
     }
 
 }
