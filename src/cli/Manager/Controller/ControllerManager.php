@@ -23,10 +23,21 @@ class ControllerManager{
             ControllerNew::Interactive();
         }
     }
+    public static function add_Action($params = []){
+        if (isset($params[1])) {
+            $path = CONTROLLER . "/" . ucfirst(strtolower($params[0])) . "Controller.php";
+            ControllerEdit::add_actions($path,explode(",",$params[1]));
+        }
+        else{
+
+        }
+    }
     public static function deleteController($params){
         if (isset($params[0])) {
             $name = ucfirst(strtolower($params[0]));
             ControllerDelete::delete($name);
+        }else {
+            ControllerDelete::Interactive();
         }
     }
 }

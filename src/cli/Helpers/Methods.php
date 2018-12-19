@@ -6,9 +6,9 @@ use Mora\Core\cli\Console\CliStrings;
 
 class Methods
 {
-    public static function ask($key){
+    public static function ask($key,$data = []){
         
-        Output::printRequest(CliStrings::get($key));
+        Output::printRequest(CliStrings::get($key,$data));
         return trim(fgets(STDIN));
     }
 }

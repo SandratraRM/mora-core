@@ -22,12 +22,13 @@ class ControllerNew{
         if(!empty($actions)){
             ControllerEdit::add_actions($filename,$actions);
         }
+        ControllerMessage::create_success($name,$actions);
 
     }
     public static function Interactive(){
         $name = Methods::ask("ask_controller_name");
         $name = ucfirst(strtolower($name));
-        $actions = ask("ask_controller_actions");
+        $actions = Methods::ask("ask_controller_actions");
         $actions = ($actions == "")? [] : explode(",",$actions);
         self::new($name,$actions);
     }

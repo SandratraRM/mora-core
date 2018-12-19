@@ -19,4 +19,13 @@ class ControllerEdit{
             }
         }
     }
+    public static function rename($old,$new){
+        
+    }
+    private static function refactorRoute($old,$new){
+        
+    }
+    private static function refactorFirewall($old,$new){
+        
+    }
 }
