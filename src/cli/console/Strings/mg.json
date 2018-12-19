@@ -1,17 +1,1 @@
-{
-    "welcome": "Tongasoa eto amin'ny cli an'ny framework Mora.",
-    "select_lang": "Ampidiro ny fiteny:",
-    "usage": "Fomba fampiasa:",
-    "rename_required_names": "Mila ampidirina ny anarana taloha sy ny anarana vaovao.",
-    "firewall_not_found": "Ny sivana '{name}' dia tsy hita na aiza na aiza.",
-    "firewall_rename_success": "Ny anaran'ny sivana '{old}' dia voasolo hoe '{new}'.",
-    "firewall_name_conflict": "Ny anarana hoe '{name}' dia efa ampiasain'ny sivana hafa.",
-    "command": "komandy",
-    "lang_changed_success": "Niova teny Malagasy ny fiteny.",
-    "firewall_add_success": "Ny sivana {name} dia tafiditra soa aman-tsara.",
-    "firewall_delete_success": "Ny sivana {name} dia voafafa soa aman-tsara.",
-    "firewall_check_comment": "Soraty eto ny fepetra tsy maintsy harahina mba ho tafita amin'ny sivana.",
-    "firewall_onfailed_comment": "Soraty eto ny hetsika atao raha tsy tafita tamin'ny sivana.",
-    "condition": "fepetra",
-    "controller_create_desc": "Mamorona mpandrindra vaovao sy ireo hetsika miaraka aminy."
-}
+{"welcome":"Tongasoa eto amin'ny cli an'ny framework Mora.","select_lang":"Ampidiro ny fiteny:","usage":"Fomba fampiasa:","rename_required_names":"Mila ampidirina ny anarana taloha sy ny anarana vaovao.","firewall_not_found":"Ny sivana '{name}' dia tsy hita na aiza na aiza.","firewall_rename_success":"Ny anaran'ny sivana '{old}' dia voasolo hoe '{new}'.","firewall_name_conflict":"Ny anarana hoe '{name}' dia efa ampiasain'ny sivana hafa.","command":"komandy","lang_changed_success":"Niova teny Malagasy ny fiteny.","firewall_add_success":"Ny sivana {name} dia tafiditra soa aman-tsara.","firewall_delete_success":"Ny sivana {name} dia voafafa soa aman-tsara.","firewall_check_comment":"Soraty eto ny fepetra tsy maintsy harahina mba ho tafita amin'ny sivana.","firewall_onfailed_comment":"Soraty eto ny hetsika atao raha tsy tafita tamin'ny sivana.","condition":"fepetra","controller_create_desc":"Mamorona mpandrindra vaovao sy ireo hetsika miaraka aminy.","controller_exists_prompt":"Ny mpandrindra {name} dia efa misy.\r\nRaha manohy ianao dia ho voasolo izy.<nc>\r\nAndramo 'php mora controller add_action action1[,action2...].\r\nTohizana?(yes\/no)[<yellow>no<nc>]"}

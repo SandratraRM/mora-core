@@ -6,6 +6,7 @@ use Mora\Core\cli\Console\Lang\Lang;
 use Mora\Core\cli\Manager\Firewall\FirewallManager;
 use Mora\Core\cli\Manager\Routes\CustomRoutesManager;
 use Mora\Core\cli\Console\Lang\TradMaker;
+use Mora\Core\cli\Manager\Controller\ControllerManager;
 
 
 class CommandList{
@@ -21,7 +22,7 @@ class CommandList{
         Lang::parseArgs($params);
     }
     public static function controller($params = [],$option = null){
-
+        ControllerManager::parseArgs($params);
     }
     public static function model(){
         

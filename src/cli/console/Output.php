@@ -18,7 +18,8 @@ class Output{
         "<Bmagenta>" => "\x1b[45m",
         "<Bcyan>" => "\x1b[46m",
         "<Bwhite>" => "\x1b[47m",
-        "<nc>" => "\x1b[0m"
+        "<nc>" => "\x1b[0m",
+        "<lb>" => "\r\n"
     ];
     public static function style($text){
         return str_replace(array_keys(self::$map),array_values(self::$map),$text);

@@ -5,7 +5,7 @@ use Mora\Core\Config\JsonConfigManager;
 
 class CliConfig{
     private $configs = [];
-    private static $path = ROOT . "/MoraCliData.json";
+    private static $path = CONFIG . "/.Cli_prefs.json";
     public static function getConfig($key){
         $conf = new JsonConfigManager(self::$path);
         return $conf->getConfig($key);
