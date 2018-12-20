@@ -10,7 +10,7 @@ interface ControllerActions{
      * @param array $params An array that olds the arguments part of the request
      * @return mixed
      */
-    public function index($params = []);
+    public function index($params);
 
     /**This method is used to set some come control when calling one of the actions
      * It should call the ActionNotFound method
@@ -18,12 +18,12 @@ interface ControllerActions{
      * @param array $params An array that olds the arguments part of the request
      * @return mixed
      */
-    public function doAction($action, $params = []);
+    public function doAction($action, $params);
 
     /**This is the method called when a requested action is not set
      * @param string $actionName The action name
      * @param array $params An array that olds the arguments part of the request
      * @return mixed
      */
-    public function ActionNotFound($actionName, $params = []);
+    public function ActionNotFound($actionName, $params);
 }

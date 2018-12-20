@@ -12,7 +12,7 @@ class Handler
         $controller = ControllerLoader::guessController($parts["controller"]);
         if(FirewallChecker::passedAll($controller)){
             $loader = new ControllerLoader($controller);
-            $loader->execute($parts["action"],$parts["args"]);
+            $loader->execute($parts["action"],$parts);
         }
     }
 }

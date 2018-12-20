@@ -13,7 +13,7 @@ abstract class Controller implements ControllerActions
      * @param string $action The action name
      * @param array $params An array that olds the arguments part of the request
      */
-    public function doAction($action, $params = []){
+    public function doAction($action,$params){
         if(method_exists($this,$action)){
             $this->$action($params);
         }

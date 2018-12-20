@@ -18,11 +18,18 @@ class Welcome{
     public static function regular()
     {
         self::WelcomeMessage();
+        self::printCommandList();
     }
     private static function WelcomeMessage(){
         $welcome = "\r\n<yellow>".CliStrings::get("welcome")."<nc>\r\n";
         $usage = "\r\n<yellow>".CliStrings::get("usage")."<nc>\r\n";
-        $command = "    php mora <blue><".CliStrings::get("command")."><nc>\r\n\r\n";
+        $command = "    php mora <blue><".CliStrings::get("command")."> <green>[".CliStrings::get("subcommand")."]<nc>\r\n\r\n";
         Output::print($welcome,self::getLogo(),$usage,$command);
+    }
+    private static function printCommandList(){
+        Output::printWarning(CliStrings::get("command_list"));
+        Output::print(CliStrings::replace(
+            SkeletonLoader::get("commandlist")
+        ));
     }
 }

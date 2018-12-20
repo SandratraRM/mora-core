@@ -8,11 +8,11 @@ class {name}Controller extends Controller
 
     public function index($params = [])
     {
-        // TODO: Implement index() method.
+
     }
 
     public function ActionNotFound($actionName, $params = [])
     {
-        // TODO: Implement ActionNotFound() method.
+        
     }
 }
