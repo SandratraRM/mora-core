@@ -20,8 +20,8 @@
         <green>create<nc> <{name}> [<{action}1,{action}2...>]
         <green>execute<nc> <{name}> <{action}> [arg1,arg2...]
     <blue>route<nc>                 
-        <green>set<nc>              
+        <green>set<nc> <a1:b1> [a2:b2 ...]
         <green>list<nc>             
-        <green>delete<nc>           
+        <green>delete<nc> <a1,a2 ...>
     <blue>view<nc>                  
-        <green>fragment<nc>         
+        <green>fragment<nc> <{name}>
