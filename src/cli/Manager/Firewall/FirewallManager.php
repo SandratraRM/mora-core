@@ -61,7 +61,7 @@ class FirewallManager{
     }
 
     public static function renameFirewall($params){
-        if(isset($params[0]) && isset($params[1])){
+        if(isset($params[1])){
             FirewallEdit::rename($params[0],$params[1]);
         }
         else{
