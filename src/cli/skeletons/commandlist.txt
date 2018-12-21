@@ -1,0 +1,27 @@
+    <blue>controller
+        <green>create <cyan> <{name}> [{action}1,{action}2...] <nc>{create_controller_desc}
+        <green>list <cyan> [{controller}]
+        <green>delete <cyan> <{name}>
+        <green>rename <cyan> <{old}> <{new}>
+        <green>add_actions <cyan> <{controller}> <{action}1[,{action}2...]>
+    <blue>database
+        <green>init <cyan>
+    <blue>firewall <cyan>
+        <green>create <cyan> <{name}> [{target}1,{target}2...]
+        <green>list <cyan> [{firewall}]
+        <green>delete <cyan> <{name}>
+        <green>rename <cyan> <{old}> <{new}>
+        <green>add_targets <cyan> <{firewall}> <{target}1[,{target}2...]>
+        <green>delete_targets <cyan> <{firewall}> <{target}1[,{target}2...]>
+    <blue>help                
+        <green>all <cyan>              
+        <green>command <cyan>          
+    <blue>model      
+        <green>create <cyan> <{name}> [<{action}1,{action}2...>]
+        <green>execute <cyan> <{name}> <{action}> [arg1,arg2...]
+    <blue>route <cyan>                 
+        <green>set <cyan> <a1:b1> [a2:b2 ...]
+        <green>list <cyan>             
+        <green>delete <cyan> <a1,a2 ...>
+    <blue>view <cyan>                  
+        <green>fragment <cyan> <{name}>

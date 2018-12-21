@@ -28,4 +28,15 @@ class CliStrings{
         }
         return ValueBinder::replace($text,$data);
     }
+    public static function replace($text){
+        $string = new self();
+        $conf = new JsonConfigManager($string->getPath());
+        $keys = array_keys($conf->getConfigsArray());
+        $search = [];
+        foreach ($keys as $key) {
+            $search []= "{".$key."}";
+        }
+        $values = array_values($conf->getConfigsArray());
+        return str_replace($search,$values,$text);
+    }
 }

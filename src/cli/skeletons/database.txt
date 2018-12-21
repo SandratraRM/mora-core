@@ -1,5 +1,5 @@
 <?php
-// TODO change this as needed
+
 /**
  * PDO dsn,user,pass,options
 */

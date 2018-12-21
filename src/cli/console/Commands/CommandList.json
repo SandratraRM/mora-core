@@ -1,28 +1,37 @@
 {
-    "controller":{
-         "create" : "name action1[,action2...]",
-         "delete": "name",
-         "rename": "oldname newname",
-         "add_actions":"action1[,action2...]"
-    }
+    "controller":[
+         "<green>create<nc> {name} {action}1[,{action}2...]",
+         "<green>delete<nc> ",
+         "<green>rename<nc> {old} {new}",
+         "<green>add_actions<nc> {controller} {action}1[,{action}2...]"
+    ]
        
     ,
     "database":[
-        "init"
+        "<green>init"
     ],
     "firewall":[
-        "create","list","delete","rename","add_targets","remove_targets"
+        "<green>create",
+        "<green>list",
+        "<green>delete",
+        "<green>rename",
+        "<green>add_targets",
+        "<green>remove_targets"
     ],
     "help":[
-        "all","command"
+        "<green>all",
+        "<green>command"
     ],
     "model":[
-        "create","execute"
+        "<green>create",
+        "<green>execute"
     ],
     "route":[
-        "set","list","delete"
+        "<green>set",
+        "<green>list",
+        "<green>delete"
     ],
     "view":[
-        "fragment"
+        "<green>fragment"
     ]
 }
