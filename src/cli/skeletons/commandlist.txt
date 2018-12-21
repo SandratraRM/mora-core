@@ -1,5 +1,5 @@
     <blue>controller<nc>
-        <green>create<nc> <{name}> <{action}1[,{action}2...]>
+        <green>create<nc> <{name}> [{action}1,{action}2...>
         <green>list<nc> [{controller}]
         <green>delete<nc> <{name}>
         <green>rename<nc> <{old}> <{new}>
@@ -7,7 +7,7 @@
     <blue>database<nc>
         <green>init<nc>
     <blue>firewall<nc>
-        <green>create<nc> <{name}> <{target}1[,{target}2...]>
+        <green>create<nc> <{name}> [{target}1,{target}2...]
         <green>list<nc> [{firewall}]
         <green>delete<nc> <{name}>
         <green>rename<nc> <{old}> <{new}>
@@ -17,8 +17,8 @@
         <green>all<nc>              
         <green>command<nc>          
     <blue>model<nc>                 
-        <green>create<nc>           
-        <green>execute<nc>          
+        <green>create<nc> <{name}> [<{action}1,{action}2...>]
+        <green>execute<nc> <{name}> <{action}> [arg1,arg2...]
     <blue>route<nc>                 
         <green>set<nc>              
         <green>list<nc>             
