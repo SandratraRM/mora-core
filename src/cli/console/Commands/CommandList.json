@@ -1,37 +1,96 @@
 {
-    "controller":[
-         "<green>create<nc> {name} {action}1[,{action}2...]",
-         "<green>delete<nc> ",
-         "<green>rename<nc> {old} {new}",
-         "<green>add_actions<nc> {controller} {action}1[,{action}2...]"
-    ]
-       
-    ,
-    "database":[
-        "<green>init"
-    ],
-    "firewall":[
-        "<green>create",
-        "<green>list",
-        "<green>delete",
-        "<green>rename",
-        "<green>add_targets",
-        "<green>remove_targets"
-    ],
-    "help":[
-        "<green>all",
-        "<green>command"
-    ],
-    "model":[
-        "<green>create",
-        "<green>execute"
-    ],
-    "route":[
-        "<green>set",
-        "<green>list",
-        "<green>delete"
-    ],
-    "view":[
-        "<green>fragment"
-    ]
+    "controller": {
+        "create": {
+            "args": "{name} [{action}1,{action}2...]",
+            "desc": "create_controller_desc"
+        },
+        "list": {
+            "args": "[{controller}]",
+            "desc": "list_controller_desc"
+        },
+        "delete": {
+            "args": "{name}",
+            "desc": "delete_controller_desc"
+        },
+        "rename": {
+            "args": "{old} {new}",
+            "desc": "rename_controller_desc"
+        },
+        "add_actions": {
+            "args": "{controller} {action}1[,{action}2...]",
+            "desc": "add_controller_action_desc"
+        }
+    },
+    "database": {
+        "init": {
+            "args": "",
+            "desc": "init_db_desc"
+        }
+    },
+    "firewall": {
+        "create": {
+            "args": "{name} [{target}1,{target}2...]",
+            "desc": "create_firewall_desc"
+        },
+        "list": {
+            "args": "[{firewall}]",
+            "desc": "list_firewall_desc"
+        },
+        "delete": {
+            "args": "{name}",
+            "desc": "delete_firewall_desc"
+        },
+        "rename": {
+            "args": "{old} {new}",
+            "desc": "rename_firewall_desc"
+        },
+        "add_targets": {
+            "args": "{firewall} {target}1[,{target}2...]",
+            "desc": "add_firewall_targets_desc"
+        },
+        "delete_targets": {
+            "args": "{firewall} {target}1[,{target}2...]",
+            "desc": "delete_firewall_targets_desc"
+        }
+    },
+    "help": {
+        "all": {
+            "args": "",
+            "desc": "all_help_desc"
+        },
+        "command": {
+            "args": "{name}",
+            "desc": "command_help_desc"
+        }
+    },
+    "model": {
+        "create": {
+            "args": "{name} [{action}1,{action}2...]",
+            "desc": "create_model_desc"
+        },
+        "execute": {
+            "args": "{name} {action} [arg1,arg2...]",
+            "desc": "execute_model_method_desc"
+        }
+    },
+    "route": {
+        "set": {
+            "args": "a1:b1 [a2:b2 ...]",
+            "desc": "route_set_desc"
+        },
+        "list": {
+            "args": "",
+            "desc": "route_list_desc"
+        },
+        "delete": {
+            "args": "a1[,a2] ...",
+            "desc": "route_delete_desc"
+        }
+    },
+    "view": {
+        "fragment": {
+            "args": "{name}",
+            "desc": "fragment_view_desc"
+        }
+    }
 }
