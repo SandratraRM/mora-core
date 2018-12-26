@@ -14,14 +14,7 @@ class ControllerManager{
     use ArgParser;
 
     public static function createController($params){
-        if(count($params) >= 1){
-            $action = (isset($params[1]))? explode(",",$params[1]) : [];
-            $name = ucfirst(strtolower($params[0]));
-            ControllerNew::new($name,$action);
-        }
-        else {
-            ControllerNew::Interactive();
-        }
+    
     }
     public static function add_Action($params = []){
         if (isset($params[1])) {

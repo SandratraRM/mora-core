@@ -5,56 +5,58 @@ use Mora\Core\cli\Helpers\ArgsInterpreter;
 use Mora\Core\cli\Console\Commands\Welcome;
 use Mora\Core\cli\Console\Commands\CommandList;
 use Mora\Core\cli\Console\Commands\SingleCliOptionManager;
+use Mora\Core\Control\Controller;
 
 class Mora_cli{
-    private  $args;
     
-    private function __construct($args = [])
-    {
-        $this->args = $args;
+    public static function exec($args){
+        unset($args[0]);
+        $args = array_values($args);
+        self::ClicontrollerLoad(self::dispatch($args));
     }
-
-    public static function exec($args = []){
-        $args = array_slice($args,1);
-        $cli = new self($args);
-        $cli->dispatch();
-    }
-
-    
-
-    private function dispatch(){
-        $i = new ArgsInterpreter($this->args);
-        switch (count($this->args)) {
+    private static function dispatch($args){
+        $action = "action";
+        $params = [];
+        switch (count($args)) {
             case 0:
-                CommandList::welcome();
+                $controller = "Welcome";
                 break;
             case 1:
-                if($i->isOption($this->args[0])){
-                    SingleCliOptionManager($this->args[0]);
-                }else{
-                    $this->executor($this->args[0]);
-                }
+                $controller = $args[0];
                 break;
+            case 2:
+                $controller = $args[0];
+                $action = $args[1];
             default:
-                if($i->isOption($this->args[0])){
-                    $method = $this->args[1];
-                    $params = array_slice($this->args,2);
-                    $option = $this->args[0];
-                }else{
-                    $method = $this->args[0];
-                    $params = array_slice($this->args,1);
-                    $option = null;
-                }
-                $this->executor($method,$params,$option);
+                $controller = $args[0];
+                $action = $args[1];
+                $params = array_slice($args,2);
                 break;
+        }
+        $controller = ucfirst(strtolower($controller));
+        return ["controller"=>$controller,"action"=>$action,"args"=>$params];
+    }
+    private static function ClicontrollerLoad($parts){
+        $path = __DIR__ . "/CommandControllers/";
+        $suffix = "Cli.php";
+        $controllerPath = $path.$parts["controller"].$suffix;
+        if (file_exists($controllerPath)) {
+            $controllerClass = "Mora\\Core\\cli\\CommandControllers\\".$parts["controller"]."Cli";
+            self::execController($controllerClass,$parts["action"],$parts["args"]);
+        }else{
+            echo("tsy ao");
         }
     }
-    private function executor($method,$parms = [],$option = null){
-        if(method_exists(CommandList::class,$method)){
-            CommandList::$method($parms,$option);
-        }
-        else{
-            CommandList::welcome();
-        }
+    /**
+     * execController
+     *
+     * @param Controller $controller
+     * @param string $action
+     * @param array $ags
+     * @return void
+     */
+    private static function execController($controller,$action,$args){
+        $controller = new $controller();
+        $controller->doAction($action,$args);
     }
 }
