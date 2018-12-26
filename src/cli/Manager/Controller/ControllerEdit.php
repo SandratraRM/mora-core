@@ -12,8 +12,9 @@ use Mora\Core\cli\Helpers\Methods;
 
 class ControllerEdit
 {
-    public static function add_actions($filename, $actions)
+    public static function add_actions($controller, $actions)
     {
+        $filename = CONTROLLER . "/{$controller}Controller.php";
         if (file_exists($filename)) {
             $file = file_get_contents($filename);
             $file = trim($file);
@@ -23,9 +24,7 @@ class ControllerEdit
                 $file .= str_replace("{action}", $action, $action_sk);
             }
             $file .= "\n}";
-            if (file_put_contents($filename, $file)) {
-                //TODO insert action message
-            }
+            file_put_contents($filename, $file);
         }
     }
     public static function InteractiveRename(){

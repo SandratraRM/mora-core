@@ -8,6 +8,7 @@ use Mora\Core\cli\Manager\Controller\ControllerEdit;
 use Mora\Core\cli\Manager\Controller\ControllerList;
 use Mora\Core\cli\Manager\Firewall\FirewallMessage;
 use Mora\Core\cli\Manager\Controller\ControllerMessage;
+use Mora\Core\cli\Helpers\Methods;
 
 class ControllerCli extends Controller
 {
@@ -48,7 +49,8 @@ class ControllerCli extends Controller
         if(isset($params[1])){
             ControllerEdit::rename($params[0],$params[1]);
         }elseif(isset($params[0])) {
-            ControllerMessage::names_required();
+            $new = Methods::ask("enter_new_name");
+            ControllerEdit::rename($params[0],$new);
         }else{
             ControllerEdit::InteractiveRename();
         }
@@ -65,7 +67,10 @@ class ControllerCli extends Controller
 
     public function add_actions($params)
     {
-
+        if (isset($params[1])) {
+            $action = explode(",",$params[1]);
+            ControllerEdit::add_actions($params[0],$action);
+        }
     }
 
 }
