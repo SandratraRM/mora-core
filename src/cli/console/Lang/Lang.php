@@ -13,7 +13,7 @@ class Lang{
         CliConfig::setConfig('lang',$lang);
         Output::print("<green>",CliStrings::get("lang_changed_success"),"<nc>\r\n");
     }
-    public static function parseArgs($params = []){
+    public static function parseArgs($params){
         if(empty($params)){
             self::Interactive();
         }else{

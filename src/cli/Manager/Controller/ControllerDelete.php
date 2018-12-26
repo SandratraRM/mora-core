@@ -7,6 +7,7 @@ use Mora\Core\cli\Manager\Firewall\FirewallManager;
 use Mora\Core\cli\Helpers\Methods;
 
 class ControllerDelete{
+
     public static function delete($name){
         $path = CONTROLLER . "/$name" . "Controller.php";
         if(file_exists($path)){
@@ -20,15 +21,18 @@ class ControllerDelete{
             ControllerMessage::controller_not_found($name);
         }
     }
+
     public static function Interactive(){
         $name = Methods::ask("ask_controller_name");
         $name = ucfirst(strtolower($name));
         self::delete($name);
     }
+
     public static function confirmDelete(){
         $answer = Methods::ask("controller_confirm_delete");
         return ($answer == "" || $answer == "yes");
     }
+
     private static function deleteRoute($name){
         $path = CustomRoutesManager::$path;
         $conf = new JsonConfigManager($path);
@@ -37,6 +41,7 @@ class ControllerDelete{
         }
         $conf->writeConfig();
     }
+    
     private static function deleteFirewallTarget($controller){
         $path = FirewallManager::$configpath;
         $conf = new JsonConfigManager($path);

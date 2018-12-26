@@ -59,7 +59,7 @@ abstract class Model
      * @param array $params
      * @return mixed
      */
-    protected function Count($cond = '', $params = []){
+    protected function Count($cond = '', $params){
         return $this->readColumn('COUNT(*)',$cond,$params);
     }
 
@@ -69,7 +69,7 @@ abstract class Model
      * @param array $params
      * @return mixed
      */
-    protected function ReadColumn($col, $cond = "", $params = []){
+    protected function ReadColumn($col, $cond = "", $params){
         $res = $this->Select($col,$cond,$params);
         return $res->fetchColumn();
     }
@@ -81,7 +81,7 @@ abstract class Model
      * @param string $col
      * @return array
      */
-    protected function ReadAll($cond = '', $params = [], $col = '*'){
+    protected function ReadAll($cond = '', $params, $col = '*'){
         $res = $this->Select($col,$cond,$params);
         return $res->fetchAll();
     }
@@ -92,12 +92,12 @@ abstract class Model
      * @param string $col
      * @return mixed
      */
-    protected function ReadFirst($cond = '', $params = [], $col = '*'){
+    protected function ReadFirst($cond = '', $params, $col = '*'){
 
         $res = $this->Select($col,$cond,$params);
         return $res->fetch();
     }
-    private function execute($sql, $params = []){
+    private function execute($sql, $params){
         $res = $this->connexion->prepare($sql);
         $res->execute($params);
         return $res;

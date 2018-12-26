@@ -1,5 +1,5 @@
 
-    public function {action}($params = [])
+    public function {action}($params)
     {
 
     }

@@ -11,7 +11,7 @@ trait ArgParser
     public static function Interactive(){
         printf(Output::style("<red>No interactive mode<nc>\r\n"));
     }
-    public static function parseArgs($params = []){
+    public static function parseArgs($params){
         if(empty($params)){
             self::Interactive();
         }else{

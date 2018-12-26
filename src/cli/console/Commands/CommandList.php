@@ -18,19 +18,19 @@ class CommandList{
             Welcome::firstTime();
         }
     }
-    public static function lang($params = [],$option = null){
+    public static function lang($params,$option = null){
         Lang::parseArgs($params);
     }
-    public static function controller($params = [],$option = null){
+    public static function controller($params,$option = null){
         ControllerManager::parseArgs($params);
     }
     public static function model(){
         
     }
-    public static function firewall($params = [],$option = null){
+    public static function firewall($params,$option = null){
         FirewallManager::parseArgs($params);
     }
-    public static function route($params = [],$option = null){
+    public static function route($params,$option = null){
         CustomRoutesManager::parseArgs($params);
     }
     public static function database(){
@@ -39,10 +39,10 @@ class CommandList{
     public static function view(){
         
     }
-    public static function tradset($params = []){
+    public static function tradset($params){
         TradMaker::set();
     }
-    public static function tradget($params = []){
+    public static function tradget($params){
         TradMaker::get();
     }
 }

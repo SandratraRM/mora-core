@@ -6,22 +6,22 @@ use Mora\Core\Control\Controller;
 class ModelCli extends Controller
 {
 
-    public function index($params = [])
+    public function index($params)
     {
 
     }
 
-    public function ActionNotFound($actionName, $params = [])
+    public function ActionNotFound($actionName, $params)
     {
         
     }
 
-    public function create($params = [])
+    public function create($params)
     {
 
     }
 
-    public function execute($params = [])
+    public function execute($params)
     {
 
     }

@@ -16,7 +16,7 @@ class Mora_cli{
     }
     private static function dispatch($args){
         $action = "action";
-        $params = [];
+        $params;
         switch (count($args)) {
             case 0:
                 $controller = "Welcome";

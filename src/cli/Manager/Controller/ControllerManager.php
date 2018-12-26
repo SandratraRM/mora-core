@@ -16,7 +16,7 @@ class ControllerManager{
     public static function createController($params){
     
     }
-    public static function add_Action($params = []){
+    public static function add_Action($params){
         if (isset($params[1])) {
             $path = CONTROLLER . "/" . ucfirst(strtolower($params[0])) . "Controller.php";
             ControllerEdit::add_actions($path,explode(",",$params[1]));
