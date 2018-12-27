@@ -25,12 +25,10 @@ class ControllerEdit
             }
             $file .= "\n}";
             file_put_contents($filename, $file);
+            
+        }else {
+            ControllerMessage::controller_not_found($controller);
         }
-    }
-    public static function InteractiveRename(){
-        $oldname = Methods::ask("enter_old_name");
-        $newname = Methods::ask("enter_new_name");
-        self::rename($oldname,$newname);
     }
     public static function rename($old, $new)
     {

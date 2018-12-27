@@ -9,13 +9,19 @@ use Mora\Core\cli\Manager\Controller\ControllerList;
 use Mora\Core\cli\Manager\Firewall\FirewallMessage;
 use Mora\Core\cli\Manager\Controller\ControllerMessage;
 use Mora\Core\cli\Helpers\Methods;
+use Mora\Core\Cli\Interactive\InteractiveController;
+use Mora\Core\cli\Console\Commands\CommandHelp;
+use Mora\Core\cli\Console\Output;
+use Mora\Core\cli\Console\CliStrings;
 
 class ControllerCli extends Controller
 {
 
     public function index($params)
     {
-
+        Output::print("\r\n");
+        CommandHelp::printCommand("controller");
+        Output::print("\r\n");
     }
 
     public function ActionNotFound($actionName, $params)
@@ -25,35 +31,20 @@ class ControllerCli extends Controller
 
     public function create($params)
     {
-        if (count($params) >= 1) {
-            $action = (isset($params[1])) ? explode(",", $params[1]) : [];
-            $name = ucfirst(strtolower($params[0]));
-            ControllerNew::new($name, $action);
-        } else {
-            ControllerNew::Interactive();
-        }
+        InteractiveController::create($params[0],$params[1]);
+        ControllerNew::new($params[0],$params[1]);
     }
 
     public function delete($params)
     {
-        if (isset($params[0])) {
-            $name = ucfirst(strtolower($params[0]));
-            ControllerDelete::delete($name);
-        }else {
-            ControllerDelete::Interactive();
-        }
+        InteractiveController::delete($params[0]);
+        ControllerDelete::delete($params[0]);
     }
 
     public function rename($params)
     {
-        if(isset($params[1])){
-            ControllerEdit::rename($params[0],$params[1]);
-        }elseif(isset($params[0])) {
-            $new = Methods::ask("enter_new_name");
-            ControllerEdit::rename($params[0],$new);
-        }else{
-            ControllerEdit::InteractiveRename();
-        }
+        InteractiveController::rename($params[0],$params[1]);
+        ControllerEdit::rename($params[0],$params[1]);
     }
 
     public function list($params)
@@ -67,10 +58,8 @@ class ControllerCli extends Controller
 
     public function add_actions($params)
     {
-        if (isset($params[1])) {
-            $action = explode(",",$params[1]);
-            ControllerEdit::add_actions($params[0],$action);
-        }
+        InteractiveController::add_actions($params[0],$params[1]);
+        ControllerEdit::add_actions($params[0],$params[1]);
     }
 
 }

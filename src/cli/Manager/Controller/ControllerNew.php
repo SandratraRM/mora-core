@@ -7,6 +7,7 @@ use Mora\Core\cli\Helpers\SkeletonLoader;
 
 class ControllerNew{
     public static function new($name,$actions){
+        $name = ucfirst(strtolower($name));
         if(!file_exists(CONTROLLER)){
             mkdir(CONTROLLER);
         }
@@ -20,17 +21,9 @@ class ControllerNew{
         $file = SkeletonLoader::get("Controller",["name" => $name]);
         file_put_contents($filename,$file);
         if(!empty($actions)){
-            ControllerEdit::add_actions($filename,$actions);
+            ControllerEdit::add_actions($name,$actions);
         }
         ControllerMessage::create_success($name,$actions);
 
     }
-    public static function Interactive(){
-        $name = Methods::ask("ask_controller_name");
-        $name = ucfirst(strtolower($name));
-        $actions = Methods::ask("ask_controller_actions");
-        $actions = ($actions == "")? [] : explode(",",$actions);
-        self::new($name,$actions);
-    }
-
 }

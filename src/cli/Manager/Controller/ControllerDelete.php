@@ -8,28 +8,27 @@ use Mora\Core\cli\Helpers\Methods;
 
 class ControllerDelete{
 
-    public static function delete($name){
+    private static function execdelete($name){
         $path = CONTROLLER . "/$name" . "Controller.php";
         if(file_exists($path)){
-            if(self::confirmDelete()){
-                unlink($path);
-                self::deleteRoute($name);
-                self::deleteFirewallTarget($name);
-                ControllerMessage::delete_success($name);
-            }
+            unlink($path);
+            self::deleteRoute($name);
+            self::deleteFirewallTarget($name);
+            ControllerMessage::delete_success($succes);
         }else {
             ControllerMessage::controller_not_found($name);
         }
     }
 
-    public static function Interactive(){
-        $name = Methods::ask("ask_controller_name");
-        $name = ucfirst(strtolower($name));
-        self::delete($name);
+    public static function delete($names){
+        if(self::confirmDelete()){
+            foreach ($names as $name) {
+                self::execdelete($name);
+            }
+        }
     }
-
-    public static function confirmDelete(){
-        $answer = Methods::ask("controller_confirm_delete");
+    private static function confirmDelete(){
+        $answer = Methods::ask("confirm_delete");
         return ($answer == "" || $answer == "yes");
     }
 

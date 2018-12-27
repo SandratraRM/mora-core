@@ -15,8 +15,8 @@ class Mora_cli{
         self::ClicontrollerLoad(self::dispatch($args));
     }
     private static function dispatch($args){
-        $action = "action";
-        $params;
+        $action = "index";
+        $params = [];
         switch (count($args)) {
             case 0:
                 $controller = "Welcome";

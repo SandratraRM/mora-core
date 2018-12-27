@@ -6,10 +6,11 @@ use Mora\Core\cli\Console\CliStrings;
 
 class ControllerMessage{
     public static function create_success($name,$actions){
+        $filename = CONTROLLER . "/{$name}Controller.php";
         if(empty($actions)){
-            Output::printSuccess(CliStrings::get("controller_create_succes",["name"=>$name]));
+            Output::printSuccess(CliStrings::get("controller_create_succes",["name"=>$name,"path"=>$filename]));
         }else{
-            Output::printSuccess(CliStrings::get("controller_action_create",["name"=>$name,"actions"=>implode(",",$actions)]));
+            Output::printSuccess(CliStrings::get("controller_action_create",["name"=>$name,"actions"=>implode(",",$actions),"path"=>$filename]));
         }
     }
     public static function names_required(){

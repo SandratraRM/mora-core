@@ -3,33 +3,37 @@
 namespace Mora\Core\cli\Manager\Controller;
 
 use Mora\Core\cli\Console\Output;
+use Mora\Core\cli\Console\CliStrings;
 
 class ControllerList
 {
     public static function all()
     {
+        Output::printWarning("",CliStrings::get("controller_list"));
         $files = scandir(CONTROLLER);
         foreach ($files as $file) {
             if (is_file(CONTROLLER . "/$file") && preg_match("/\w+Controller\.php/", $file)) {
-                $file = str_replace("Controller.php", "", $file);
-                Output::printWarning($file);
+                $file = "-".str_replace("Controller.php", "", $file);
+                Output::print($file,"\r\n");
             }
         }
+        print("\r\n");
     }
     public static function Action($controller)
     {
         if (file_exists(CONTROLLER . "/{$controller}Controller.php")) {
-            Output::printRequest($controller, ":", "\r\n");
+            Output::printWarning("",CliStrings::get("controller_action_list",["name"=>$controller]));
             $controller = PROJECT_NAME . "\\Controller\\{$controller}Controller";
             $methods = get_class_methods($controller);
             foreach ($methods as $method) {
                 if ($method != "doAction") {
-                    Output::printWarning($method);
+                    Output::print("-",$method,"\r\n");
                 }
             }
+            print("\r\n");
         }
         else{
-            ControllerMessage::controller_not_found();
+            ControllerMessage::controller_not_found($controller);
         }
     }
 }
