@@ -28,4 +28,20 @@ class InteractiveFirewall
         SET:
             $name = explode(",",$name);
     }
+    public static function add_targets(&$name,&$targets){
+        
+        if ($name == null) {
+            goto ASKNAME;
+        }elseif ($targets == null) {
+            goto ASKTARGETS;
+        }else{
+            goto SET;
+        }
+        ASKNAME:
+            $name = Input::ask("ask_firewall_name");
+        ASKTARGETS:
+            $targets = Input::ask("ask_firewall_targets");
+        SET:
+            $targets =  explode(",",$targets);
+    }
 }

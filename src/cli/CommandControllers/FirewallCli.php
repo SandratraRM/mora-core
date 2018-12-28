@@ -8,6 +8,8 @@ use Mora\Core\cli\Console\Commands\CommandHelp;
 use Mora\Core\cli\Manager\Firewall\FirewallList;
 use Mora\Core\cli\Manager\Firewall\Firewalldelete;
 use Mora\Core\Cli\Helpers\Confirm;
+use Mora\Core\Cli\Interactive\InteractiveController;
+use Mora\Core\cli\Manager\Firewall\FirewallEdit;
 
 class FirewallCli extends Controller
 {
@@ -46,7 +48,8 @@ class FirewallCli extends Controller
 
     public function rename($params)
     {
-
+        InteractiveController::rename($params[0],$params[1]);
+        FirewallEdit::rename($params[0],$params[1]);
     }
 
     public function add_targets($params)
