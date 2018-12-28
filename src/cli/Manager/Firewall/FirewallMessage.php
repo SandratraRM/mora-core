@@ -41,7 +41,7 @@ class FirewallMessage{
 
     }
     public static function firewall_delete_success($name){
-
+        Output::printSuccess(CliStrings::get("firewall_delete_success",["name"=>$name]));
     }
 
 }

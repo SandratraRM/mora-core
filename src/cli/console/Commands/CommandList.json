@@ -9,7 +9,7 @@
             "desc": "list_controller_desc"
         },
         "delete": {
-            "args": "{name}",
+            "args": "{name}1[,{name}2...]",
             "desc": "delete_controller_desc"
         },
         "rename": {
@@ -29,7 +29,7 @@
     },
     "firewall": {
         "create": {
-            "args": "{name} [{target}1,{target}2...]",
+            "args": "{name} [{controller}1,{controller}2...]",
             "desc": "create_firewall_desc"
         },
         "list": {
@@ -37,7 +37,7 @@
             "desc": "list_firewall_desc"
         },
         "delete": {
-            "args": "{name}",
+            "args": "{name}1[,{name}2...]",
             "desc": "delete_firewall_desc"
         },
         "rename": {
@@ -45,11 +45,11 @@
             "desc": "rename_firewall_desc"
         },
         "add_targets": {
-            "args": "{firewall} {target}1[,{target}2...]",
+            "args": "{firewall} {controller}1[,{controller}2...]",
             "desc": "add_firewall_targets_desc"
         },
         "delete_targets": {
-            "args": "{firewall} {target}1[,{target}2...]",
+            "args": "{firewall} {controller}1[,{controller}2...]",
             "desc": "delete_firewall_targets_desc"
         }
     },

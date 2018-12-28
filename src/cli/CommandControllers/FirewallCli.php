@@ -4,13 +4,17 @@ namespace Mora\Core\cli\CommandControllers;
 use Mora\Core\Control\Controller;
 use Mora\Core\Cli\Interactive\InteractiveFirewall;
 use Mora\Core\cli\Manager\Firewall\FirewallNew;
+use Mora\Core\cli\Console\Commands\CommandHelp;
+use Mora\Core\cli\Manager\Firewall\FirewallList;
+use Mora\Core\cli\Manager\Firewall\Firewalldelete;
+use Mora\Core\Cli\Helpers\Confirm;
 
 class FirewallCli extends Controller
 {
 
     public function index($params)
     {
-
+        CommandHelp::printCommand("firewall");
     }
 
     public function ActionNotFound($actionName, $params)
@@ -26,12 +30,18 @@ class FirewallCli extends Controller
 
     public function list($params)
     {
-
+        if (isset($params[0])) {
+            FirewallList::targets($params[0]);
+        }else {
+            FirewallList::all();
+        }
     }
 
     public function delete($params)
     {
-
+        InteractiveFirewall::delete($params[0]);
+        if(Confirm::delete())
+        Firewalldelete::firewall($params[0]);
     }
 
     public function rename($params)

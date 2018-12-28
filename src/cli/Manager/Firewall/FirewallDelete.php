@@ -2,23 +2,35 @@
 namespace Mora\Core\cli\Manager\Firewall;
 
 use Mora\Core\Config\JsonConfigManager;
+use Mora\Core\cli\Helpers\Input;
+use Mora\Core\cli\Manager\Controller\ControllerMessage;
+use Mora\Core\Control\Firewall;
 
 class Firewalldelete{
     private static $path = CONFIG . "/Firewalls.json";
 
-    public static function firewall($firewalls){
+    private static function execfirewall($firewall){
+        $firewall = ucfirst(strtolower($firewall));
         $config = new JsonConfigManager(self::$path);
-        foreach ($firewalls as $firewall) {
-            $path = FIREWALL . "/".$firewall."Firewall.json";
-            if(file_exists($path)){
-                unlink($path);
-            }
-            if($config->hasConfig($firewall)){
-                $config->unsetConfig($firewall);
-                $config->writeConfig();
-            }
+        $path = FIREWALL . "/".$firewall."Firewall.php";
+        if(file_exists($path)){
+            unlink($path);
+            FirewallMessage::firewall_delete_success($firewall);
+        }else {
+            FirewallMessage::firewall_not_found($firewall);
+        }
+        if($config->hasConfig($firewall)){
+            $config->unsetConfig($firewall);
+            $config->writeConfig();
         }
     }
+
+    public static function firewall($names){
+            foreach ($names as $name) {
+                self::execfirewall($name);
+        }
+    }
+
     public static function target($from,$targets){
         $from = ucfirst(strtolower($from));
         $config = new JsonConfigManager(self::$path);

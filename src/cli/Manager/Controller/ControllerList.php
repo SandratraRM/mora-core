@@ -11,6 +11,9 @@ class ControllerList
     {
         Output::printWarning("",CliStrings::get("controller_list"));
         Output::print("\r\n");
+        if (!file_exists(CONTROLLER)) {
+            exit();
+        }
         $files = scandir(CONTROLLER);
         foreach ($files as $file) {
             if (is_file(CONTROLLER . "/$file") && preg_match("/\w+Controller\.php/", $file)) {

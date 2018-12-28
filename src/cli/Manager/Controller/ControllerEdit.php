@@ -64,7 +64,7 @@ class ControllerEdit
         } elseif (!file_exists($oldPath)) {
             ControllerMessage::controller_not_found($old);
         }elseif (file_exists($newPath)) {
-            # code...
+            ControllerMessage::controller_exists($new);
         }
         
     }

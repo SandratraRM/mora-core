@@ -13,6 +13,7 @@ use Mora\Core\Cli\Interactive\InteractiveController;
 use Mora\Core\cli\Console\Commands\CommandHelp;
 use Mora\Core\cli\Console\Output;
 use Mora\Core\cli\Console\CliStrings;
+use Mora\Core\Cli\Helpers\Confirm;
 
 class ControllerCli extends Controller
 {
@@ -38,7 +39,9 @@ class ControllerCli extends Controller
     public function delete($params)
     {
         InteractiveController::delete($params[0]);
-        ControllerDelete::delete($params[0]);
+        if (Confirm::delete()) {
+            ControllerDelete::delete($params[0]);
+        }
     }
 
     public function rename($params)

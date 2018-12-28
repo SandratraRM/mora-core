@@ -29,6 +29,10 @@ class ControllerMessage
         Output::printSuccess(CliStrings::get("controller_rename_success", ["old" => $old, "new" => $new]));
     }
 
+    public static function controller_exists($name){
+        Output::printError(CliStrings::get("controller_exists",["name"=>$name]));
+    }
+
     public static function method_exists($method)
     {
         Output::printError(CliStrings::get("method_exists",["name"=>$method]));

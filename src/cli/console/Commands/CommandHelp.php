@@ -9,6 +9,7 @@ use Mora\Core\Config\JsonConfigManager;
 class CommandHelp
 {
     private static $path = __DIR__ . "/CommandList.json";
+
     public static function printAll(){
         $conf = new JsonConfigManager(self::$path);
         $commands = $conf->getConfigsArray();
@@ -22,7 +23,7 @@ class CommandHelp
     }
     public static function printCommand($command){
         $conf = new JsonConfigManager(self::$path);
-        Output::printWarning(CliStrings::get("sub_command_list",["name"=>$command]));
+        Output::printWarning("",CliStrings::get("sub_command_list",["name"=>$command]));
         $subcommands = $conf->getConfig($command);
         foreach ($subcommands as $subcommand => $details) {
             Output::print(CliStrings::replace("\r\n  <green>$subcommand <cyan>".$details["args"]."<nc>\r\n"));

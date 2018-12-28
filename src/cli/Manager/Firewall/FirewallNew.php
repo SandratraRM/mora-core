@@ -15,7 +15,7 @@ class FirewallNew
         $fvalue = [];
         $values = $actions;
         foreach ($values as $value) {
-            $fvalue [] = $value;
+            $fvalue [] = ucfirst(strtolower($value));
         }
         $conf->setConfig($fname,$fvalue);
         if(!file_exists(FIREWALL)){

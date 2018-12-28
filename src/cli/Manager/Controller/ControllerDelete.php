@@ -4,7 +4,7 @@ namespace Mora\Core\cli\Manager\Controller;
 use Mora\Core\cli\Manager\Routes\CustomRoutesManager;
 use Mora\Core\Config\JsonConfigManager;
 use Mora\Core\cli\Manager\Firewall\FirewallManager;
-use Mora\Core\cli\Helpers\Methods;
+use Mora\Core\cli\Helpers\Input;
 
 class ControllerDelete{
 
@@ -21,15 +21,9 @@ class ControllerDelete{
     }
 
     public static function delete($names){
-        if(self::confirmDelete()){
-            foreach ($names as $name) {
-                self::execdelete($name);
-            }
+        foreach ($names as $name) {
+            self::execdelete($name);
         }
-    }
-    private static function confirmDelete(){
-        $answer = Methods::ask("confirm_delete");
-        return ($answer == "" || $answer == "yes");
     }
 
     private static function deleteRoute($name){

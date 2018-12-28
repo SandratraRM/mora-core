@@ -3,6 +3,7 @@
 namespace Mora\Core\Cli\Interactive;
 
 use Mora\Core\cli\Helpers\Input;
+use Mora\Core\cli\Console\CliStrings;
 
 class InteractiveController
 {
@@ -22,7 +23,7 @@ class InteractiveController
         if ($name != null) {
             goto SET;
         }
-        $name = Input::ask("ask_controller_name");
+        $name = Input::ask("ask_element_to_delete",["element"=>CliStrings::get("controller")]);
         SET:
             $name = explode(",",$name);
     }
