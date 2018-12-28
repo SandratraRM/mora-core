@@ -2,6 +2,7 @@
 namespace Mora\Core\cli\Manager\Firewall;
 
 use Mora\Core\Config\JsonConfigManager;
+use Mora\Core\Control\Firewall;
 
 class FirewallEdit{
     private static $confPath = CONFIG . "/Firewalls.json";
@@ -36,12 +37,23 @@ class FirewallEdit{
     public static function addTarget($firewall,$targets){
         $conf = new JsonConfigManager(self::$confPath);
         $key = ucfirst(strtolower($firewall));
-        if ($conf->hasConfig($key)) {
-            $values = $conf->getConfig($key);
+        if (file_exists(FIREWALL. "/{$key}Firewall.php")) {
+            if ($conf->hasConfig($key)) {
+                $values = $conf->getConfig($key);
+            }else {
+                $values = [];
+            }
+            foreach ($targets as $k => $v) {
+                $targets[$k] = ucfirst(strtolower($v));
+            }
+            $targets = array_diff($targets,$values);
             $conf->setConfig($key,array_merge($values,$targets));
             if ($conf->writeConfig()) {
-                FirewallMessage::target_added_succes($targets);
+                FirewallMessage::targets_add_success($key,$targets);
             }
+        }
+        else {
+            FirewallMessage::firewall_not_found($key);
         }
     }
 }

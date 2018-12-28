@@ -37,8 +37,11 @@ class FirewallMessage{
             ["name"=>$name]
         ));
     }
-    public static function targets_delete_success($targets){
-
+    public static function targets_add_success($firewall,$targets){
+        Output::printSuccess(CliStrings::get("targets_added",["name"=>$firewall,"targets"=>implode(",",$targets)]));
+    }
+    public static function target_delete_success($firewall,$target){
+        Output::printSuccess(CliStrings::get("target_deleted",['name'=>$firewall,'target'=>$target]));
     }
     public static function firewall_delete_success($name){
         Output::printSuccess(CliStrings::get("firewall_delete_success",["name"=>$name]));

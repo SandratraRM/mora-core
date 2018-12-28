@@ -54,12 +54,16 @@ class FirewallCli extends Controller
 
     public function add_targets($params)
     {
-
+        InteractiveFirewall::add_targets($params[0],$params[1]);
+        FirewallEdit::addTarget($params[0],$params[1]);
     }
 
     public function delete_targets($params)
     {
-
+        InteractiveFirewall::add_targets($params[0],$params[1]);
+        if (Confirm::delete()) {
+            Firewalldelete::target($params[0],$params[1]);
+        }
     }
 
 }

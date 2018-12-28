@@ -33,14 +33,28 @@ class Firewalldelete{
 
     public static function target($from,$targets){
         $from = ucfirst(strtolower($from));
+
+        if (!file_exists(FIREWALL . "/{$from}Firewall.php")) {
+            FirewallMessage::firewall_not_found($from);
+            exit();
+        }
+
         $config = new JsonConfigManager(self::$path);
         $firewallArray = $config->getConfig($from);
-        foreach ($firawallArray as $key => $value) {
+        $firewallArray = ($firewallArray === false)? [] : $firewallArray;
+
+        foreach ($targets as $key => $value) {
+            $targets[$key] = ucfirst(strtolower($value));
+        }
+
+        foreach ($firewallArray as $key => $value) {
             if(in_array($value,$targets)){
-                unset($firawallArray[$key]);
+                unset($firewallArray[$key]);
+                FirewallMessage::target_delete_success($from,$value);
             }
         } 
-        $config->setConfig($from,$firawallArray);
+        $config->setConfig($from,$firewallArray);
         $config->writeConfig();
+
     }
 }

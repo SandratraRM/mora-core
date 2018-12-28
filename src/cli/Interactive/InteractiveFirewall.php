@@ -3,9 +3,6 @@ namespace Mora\Core\Cli\Interactive;
 
 use Mora\Core\cli\Helpers\Input;
 use Mora\Core\cli\Console\CliStrings;
-/**
- * undocumented class
- */
 class InteractiveFirewall 
 {
     public static function create(&$name,&$targets){

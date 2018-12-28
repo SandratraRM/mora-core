@@ -35,6 +35,7 @@ class FirewallList{
         Output::printWarning("",CliStrings::get("firewall_targets_list",['name'=>$firewall]),"");
         $conf = new JsonConfigManager(self::$path);
         $targets = $conf->getConfig($firewall);
+        $targets = ($targets === false)? [] : $targets;
         foreach ($targets as $target) {
             Output::print('-',$target,"\r\n");
         }
