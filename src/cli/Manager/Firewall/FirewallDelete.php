@@ -53,7 +53,7 @@ class Firewalldelete{
                 FirewallMessage::target_delete_success($from,$value);
             }
         } 
-        $config->setConfig($from,$firewallArray);
+        $config->setConfig($from,array_values($firewallArray));
         $config->writeConfig();
 
     }
