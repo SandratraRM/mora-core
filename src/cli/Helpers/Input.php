@@ -4,7 +4,7 @@ namespace Mora\Core\cli\Helpers;
 use Mora\Core\cli\Console\Output;
 use Mora\Core\cli\Console\CliStrings;
 
-class Methods
+class Input
 {
     public static function ask($key,$data = []){
         

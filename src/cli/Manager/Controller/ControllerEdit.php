@@ -20,12 +20,31 @@ class ControllerEdit
             $file = trim($file);
             $file = rtrim($file, "}");
             $action_sk = SkeletonLoader::get("action");
+
+            $methods = get_class_methods(PROJECT_NAME . "\\Controller\\{$controller}Controller");
+
+            array_walk($methods,function(&$value,$key){
+                $value = strtolower($value);
+            });
+            $added = [];
+
             foreach ($actions as $action) {
-                $file .= str_replace("{action}", $action, $action_sk);
+                if(!in_array(strtolower($action),$methods) && $action != ""){
+                    $added []= $action;
+                    $file .= str_replace("{action}", $action, $action_sk);
+                }elseif(in_array(strtolower($action),$methods)) {
+                    ControllerMessage::method_exists($action);
+                }
             }
+
             $file .= "\n}";
-            file_put_contents($filename, $file);
-            
+            if(file_put_contents($filename, $file)){
+                if(!empty($added)){
+                    ControllerMessage::add_actions_success($controller,$added);
+                }
+            }
+
+
         }else {
             ControllerMessage::controller_not_found($controller);
         }

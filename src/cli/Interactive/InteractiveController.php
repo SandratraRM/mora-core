@@ -2,7 +2,7 @@
 
 namespace Mora\Core\Cli\Interactive;
 
-use Mora\Core\cli\Helpers\Methods;
+use Mora\Core\cli\Helpers\Input;
 
 class InteractiveController
 {
@@ -13,8 +13,8 @@ class InteractiveController
             goto SET;
         }
         ASK:
-        $name = Methods::ask("ask_controller_name");
-        $actions = Methods::ask("ask_controller_actions");
+        $name = Input::ask("ask_controller_name");
+        $actions = Input::ask("ask_controller_actions");
         SET:
         $actions = ($actions == "")? [] : explode(",",$actions);
     }
@@ -22,7 +22,7 @@ class InteractiveController
         if ($name != null) {
             goto SET;
         }
-        $name = Methods::ask("ask_controller_name");
+        $name = Input::ask("ask_controller_name");
         SET:
             $name = explode(",",$name);
     }
@@ -35,9 +35,9 @@ class InteractiveController
             return;
         }
         OLDNAME:
-        $old = Methods::ask("enter_old_name");
+        $old = Input::ask("enter_old_name");
         NEWNAME:
-        $new = Methods::ask("enter_new_name");
+        $new = Input::ask("enter_new_name");
     }
     public static function add_actions(&$name,&$actions){
         if ($name == null) {
@@ -48,9 +48,9 @@ class InteractiveController
             goto SET;
         }
         ASKNAME:
-            $name = Methods::ask("ask_controller_name");
+            $name = Input::ask("ask_controller_name");
         ASKACTIONS:
-            $actions = Methods::ask("ask_controller_actions");
+            $actions = Input::ask("ask_controller_actions");
         SET:
             $actions = explode(",",$actions);
     }

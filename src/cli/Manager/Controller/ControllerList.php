@@ -10,6 +10,7 @@ class ControllerList
     public static function all()
     {
         Output::printWarning("",CliStrings::get("controller_list"));
+        Output::print("\r\n");
         $files = scandir(CONTROLLER);
         foreach ($files as $file) {
             if (is_file(CONTROLLER . "/$file") && preg_match("/\w+Controller\.php/", $file)) {
@@ -23,6 +24,7 @@ class ControllerList
     {
         if (file_exists(CONTROLLER . "/{$controller}Controller.php")) {
             Output::printWarning("",CliStrings::get("controller_action_list",["name"=>$controller]));
+            Output::print("\r\n");
             $controller = PROJECT_NAME . "\\Controller\\{$controller}Controller";
             $methods = get_class_methods($controller);
             foreach ($methods as $method) {

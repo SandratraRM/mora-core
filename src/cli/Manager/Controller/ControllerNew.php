@@ -20,6 +20,12 @@ class ControllerNew{
         }
         $file = SkeletonLoader::get("Controller",["name" => $name]);
         file_put_contents($filename,$file);
+        foreach ($actions as $key => $value) {
+            if ($value == "") {
+                unset($actions[$key]);
+            }
+        }
+        $actions = array_values($actions);
         if(!empty($actions)){
             ControllerEdit::add_actions($name,$actions);
         }

@@ -14,7 +14,7 @@ class ControllerDelete{
             unlink($path);
             self::deleteRoute($name);
             self::deleteFirewallTarget($name);
-            ControllerMessage::delete_success($succes);
+            ControllerMessage::delete_success($name);
         }else {
             ControllerMessage::controller_not_found($name);
         }

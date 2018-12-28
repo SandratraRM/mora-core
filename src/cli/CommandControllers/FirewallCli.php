@@ -2,6 +2,8 @@
 namespace Mora\Core\cli\CommandControllers;
 
 use Mora\Core\Control\Controller;
+use Mora\Core\Cli\Interactive\InteractiveFirewall;
+use Mora\Core\cli\Manager\Firewall\FirewallNew;
 
 class FirewallCli extends Controller
 {
@@ -18,7 +20,8 @@ class FirewallCli extends Controller
 
     public function create($params)
     {
-
+        InteractiveFirewall::create($params[0],$params[1]);
+        FirewallNew::create($params[0],$params[1]);
     }
 
     public function list($params)
