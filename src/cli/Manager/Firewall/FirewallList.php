@@ -4,11 +4,11 @@ namespace Mora\Core\cli\Manager\Firewall;
 
 use Mora\Core\cli\Console\Output;
 use Mora\Core\cli\Console\CliStrings;
-use Mora\Core\Config\JsonConfigManager;
+use Mora\Core\Config\ArrayConfigManager;
 
 class FirewallList{
 
-    private static $path = CONFIG . "/Firewalls.json";
+    private static $path = CONFIG . "/Firewalls.php";
     
     public static function all(){
         Output::printWarning("",CliStrings::get("firewall_list"));
@@ -33,7 +33,7 @@ class FirewallList{
             exit();
         }
         Output::printWarning("",CliStrings::get("firewall_targets_list",['name'=>$firewall]),"");
-        $conf = new JsonConfigManager(self::$path);
+        $conf = new ArrayConfigManager(self::$path);
         $targets = $conf->getConfig($firewall);
         $targets = ($targets === false)? [] : $targets;
         foreach ($targets as $target) {

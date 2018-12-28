@@ -1,8 +1,8 @@
 <?php
 
-namespace Mora\core\config;
+namespace Mora\Core\config;
 
-use Mora\core\files\Arrays;
+use Mora\Core\files\Arrays;
 
 
 class ArrayConfigManager

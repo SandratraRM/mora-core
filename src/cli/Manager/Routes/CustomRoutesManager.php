@@ -2,10 +2,10 @@
 namespace Mora\Core\cli\Manager\Routes;
 
 use Mora\Core\cli\Helpers\ArgParser;
-use Mora\Core\Config\JsonConfigManager;
+use Mora\Core\Config\ArrayConfigManager;
 
 class CustomRoutesManager{
-    public  static $path = CONFIG . "/CustomRoutes.json";
+    public  static $path = CONFIG . "/CustomRoutes.php";
 
     private static $mapping = [
         "list" => "list",
@@ -22,7 +22,7 @@ class CustomRoutesManager{
     }
 
     public static function setRoutes($args = []){
-        $config = new JsonConfigManager(self::$path);
+        $config = new ArrayConfigManager(self::$path);
         foreach($args as $arg){
             $keyvalue = explode(":",$arg);
             if(count($keyvalue) == 2){
@@ -33,7 +33,7 @@ class CustomRoutesManager{
     }
 
     public static function unsetRoutes($args = []){
-        $config = new JsonConfigManager(self::$path);
+        $config = new ArrayConfigManager(self::$path);
         foreach($args as $key){
             if($config->hasConfig($key))
             $config->unsetConfig($key);
@@ -42,7 +42,7 @@ class CustomRoutesManager{
     }
 
     public static function list(){
-        $config = new JsonConfigManager(self::$path);
+        $config = new ArrayConfigManager(self::$path);
     
         foreach($config->getConfigsArray() as $key => $value){
             echo $key . " => " . $value ."\r\n";

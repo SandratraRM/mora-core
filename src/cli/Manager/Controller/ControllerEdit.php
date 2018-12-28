@@ -4,7 +4,7 @@ namespace Mora\Core\cli\Manager\Controller;
 use Mora\Core\cli\Helpers\SkeletonLoader;
 use Mora\Core\Cli\Helpers\Refactor;
 use Mora\Core\cli\Manager\Firewall\FirewallManager;
-use Mora\Core\Config\JsonConfigManager;
+use Mora\Core\Config\ArrayConfigManager;
 use Mora\Core\cli\Manager\Routes\CustomRoutesManager;
 use Mora\Core\cli\Console\Output;
 use Mora\Core\cli\Console\CliStrings;
@@ -72,7 +72,7 @@ class ControllerEdit
     private static function refactorRoute($old, $new)
     {
         $confPath = CustomRoutesManager::$path;
-        $conf = new JsonConfigManager($confPath);
+        $conf = new ArrayConfigManager($confPath);
         $routes = $conf->getConfigsArray();
         while($key = array_search($old,$routes)){
             $routes[$key] = $new;
@@ -83,7 +83,7 @@ class ControllerEdit
     private static function refactorFirewall($old, $new)
     {
         $confPath = FirewallManager::$configpath;
-        $conf = new JsonConfigManager($confPath);
+        $conf = new ArrayConfigManager($confPath);
         $firewalls = $conf->getConfigsArray();
         foreach ($firewalls as $firewall => $targets) {
             $key = array_search($old,$targets);

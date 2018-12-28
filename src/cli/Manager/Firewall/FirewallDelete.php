@@ -1,17 +1,17 @@
 <?php 
 namespace Mora\Core\cli\Manager\Firewall;
 
-use Mora\Core\Config\JsonConfigManager;
+use Mora\Core\Config\ArrayConfigManager;
 use Mora\Core\cli\Helpers\Input;
 use Mora\Core\cli\Manager\Controller\ControllerMessage;
 use Mora\Core\Control\Firewall;
 
 class Firewalldelete{
-    private static $path = CONFIG . "/Firewalls.json";
+    private static $path = CONFIG . "/Firewalls.php";
 
     private static function execfirewall($firewall){
         $firewall = ucfirst(strtolower($firewall));
-        $config = new JsonConfigManager(self::$path);
+        $config = new ArrayConfigManager(self::$path);
         $path = FIREWALL . "/".$firewall."Firewall.php";
         if(file_exists($path)){
             unlink($path);
@@ -39,7 +39,7 @@ class Firewalldelete{
             exit();
         }
 
-        $config = new JsonConfigManager(self::$path);
+        $config = new ArrayConfigManager(self::$path);
         $firewallArray = $config->getConfig($from);
         $firewallArray = ($firewallArray === false)? [] : $firewallArray;
 

@@ -2,7 +2,7 @@
 namespace Mora\Core\cli\Manager\Controller;
 
 use Mora\Core\cli\Manager\Routes\CustomRoutesManager;
-use Mora\Core\Config\JsonConfigManager;
+use Mora\Core\Config\ArrayConfigManager;
 use Mora\Core\cli\Manager\Firewall\FirewallManager;
 use Mora\Core\cli\Helpers\Input;
 
@@ -28,7 +28,7 @@ class ControllerDelete{
 
     private static function deleteRoute($name){
         $path = CustomRoutesManager::$path;
-        $conf = new JsonConfigManager($path);
+        $conf = new ArrayConfigManager($path);
         while ($key = array_search($name,$conf->getConfigsArray())) {
             $conf->unsetConfig($key);
         }
@@ -37,7 +37,7 @@ class ControllerDelete{
     
     private static function deleteFirewallTarget($controller){
         $path = FirewallManager::$configpath;
-        $conf = new JsonConfigManager($path);
+        $conf = new ArrayConfigManager($path);
         $firewalls = $conf->getConfigsArray();
         foreach ($firewalls as $firewall => $targets) {
             if(in_array($controller,$targets)){

@@ -1,14 +1,14 @@
 <?php 
 namespace Mora\Core\cli\Manager\Firewall;
 
-use Mora\Core\Config\JsonConfigManager;
+use Mora\Core\Config\ArrayConfigManager;
 use Mora\Core\Control\Firewall;
 
 class FirewallEdit{
-    private static $confPath = CONFIG . "/Firewalls.json";
+    private static $confPath = CONFIG . "/Firewalls.php";
 
     public static function rename($old,$new){
-        $conf = new JsonConfigManager(self::$confPath);
+        $conf = new ArrayConfigManager(self::$confPath);
         $new = ucfirst(strtolower($new));
         $old = ucfirst(strtolower($old));
         $oldPath = FIREWALL . "/$old"."Firewall.php";
@@ -35,7 +35,7 @@ class FirewallEdit{
     }
 
     public static function addTarget($firewall,$targets){
-        $conf = new JsonConfigManager(self::$confPath);
+        $conf = new ArrayConfigManager(self::$confPath);
         $key = ucfirst(strtolower($firewall));
         if (file_exists(FIREWALL. "/{$key}Firewall.php")) {
             if ($conf->hasConfig($key)) {

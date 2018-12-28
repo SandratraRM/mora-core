@@ -3,14 +3,14 @@ namespace Mora\Core\cli\Manager\Firewall;
 
 use Mora\Core\cli\Console\Output;
 use Mora\Core\cli\Console\CliStrings;
-use Mora\Core\Config\JsonConfigManager;
+use Mora\Core\Config\ArrayConfigManager;
 use Mora\Core\cli\Helpers\SkeletonLoader;
 
 class FirewallNew  
 {
-    public  static $configpath = CONFIG . "/Firewalls.json";
+    public  static $configpath = CONFIG . "/Firewalls.php";
     public static function create($name,$actions){
-        $conf = new JsonConfigManager(self::$configpath);
+        $conf = new ArrayConfigManager(self::$configpath);
         $fname = ucfirst(strtolower($name));
         $fvalue = [];
         $values = $actions;
