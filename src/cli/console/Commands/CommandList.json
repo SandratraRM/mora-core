@@ -63,6 +63,16 @@
             "desc": "command_help_desc"
         }
     },
+    "lang":{
+        "list":{
+            "args":"",
+            "desc":"list_lang_desc"
+        },
+        "set":{
+            "args":"{code}",
+            "desc":"set_lang_desc"
+        }
+    },
     "model": {
         "create": {
             "args": "{name} [{action}1,{action}2...]",
