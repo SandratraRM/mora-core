@@ -16,11 +16,14 @@ class FirewallList{
         if (!file_exists(FIREWALL)) {
             exit();
         }
-        $files = scandir(FIREWALL);
-        foreach ($files as $file) {
-            if (is_file(FIREWALL . "/$file") && preg_match("/\w+Firewall\.php/", $file)) {
-                $file = "-".str_replace("Firewall.php", "", $file);
-                Output::print($file,"\r\n");
+        $conf = new ArrayConfigManager(self::$path);
+        $firewalls = array_keys($conf->getConfigsArray());
+        $priority = 1;
+        foreach ($firewalls as $firewall) {
+            if (file_exists(FIREWALL . "/$firewall"."Firewall.php")) {
+                $firewall  = $priority . "-" . $firewall;
+                Output::print($firewall,"\r\n");
+                $priority ++;
             }
         }
         print("\r\n");

@@ -15,9 +15,9 @@ class CliStrings{
     {
         return $this->path;
     }
-    public static function get($key,$data = [])
+    public static function get($key,$data = [],$lang = "")
     {
-        $string = new self();
+        $string = new self($lang);
         $conf = new JsonConfigManager($string->getPath());
         if($conf->hasConfig($key)){
             $text = $conf->getConfig($key);

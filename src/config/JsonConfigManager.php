@@ -1,10 +1,8 @@
 <?php
-namespace Mora\Core\Config;
+namespace Mora\Core\config;
 
 use Mora\Core\files\Jsons;
-class JsonConfigManager{
-    private $configs = [];
-    protected $path;
+class JsonConfigManager extends ConfigManager{
 
     public function __construct($path = "") {
         if ($path != "") {
@@ -15,33 +13,6 @@ class JsonConfigManager{
         }
     }
     
-    private function fileExists(){
-        return file_exists($this->path);
-    }
-
-    public function getConfigsArray(){
-        return $this->configs;
-    }
-    public function setConfigsArray($configs)
-    {
-        $this->configs = $configs;
-    }
-    public function hasConfig($key){
-        return isset($this->configs[$key]);
-    }
-
-    public function setConfig($key,$value){
-        $this->configs[$key] = $value;
-    }
-
-    public function getConfig($key){
-        if($this->hasConfig($key))
-        return $this->configs[$key];
-        else return false;
-    }
-    public function unsetConfig($key){
-        unset($this->configs[$key]);
-    }
     public function writeConfig(){
         return Jsons::toJsonFile($this->configs,$this->path);
     }

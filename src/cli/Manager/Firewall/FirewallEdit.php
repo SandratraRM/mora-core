@@ -1,8 +1,8 @@
 <?php 
 namespace Mora\Core\cli\Manager\Firewall;
 
-use Mora\Core\Config\ArrayConfigManager;
 use Mora\Core\Control\Firewall;
+use Mora\Core\config\ArrayConfigManager;
 
 class FirewallEdit{
     private static $confPath = CONFIG . "/Firewalls.php";
@@ -40,6 +40,7 @@ class FirewallEdit{
         if (file_exists(FIREWALL. "/{$key}Firewall.php")) {
             if ($conf->hasConfig($key)) {
                 $values = $conf->getConfig($key);
+                $values = (is_array($values))? $values : [];
             }else {
                 $values = [];
             }
@@ -55,5 +56,20 @@ class FirewallEdit{
         else {
             FirewallMessage::firewall_not_found($key);
         }
+    }
+    public static function priority($firewall,$order){
+        $conf = new ArrayConfigManager(self::$confPath);
+        $length = count($conf->getConfigsArray());
+        $firewall = ucfirst(strtolower($firewall));
+        if (!file_exists(FIREWALL . "/{$firewall}Firewall.php")) {
+            FirewallMessage::firewall_not_found($firewall);
+            exit();
+        }
+        $order = ($order == "") ? $length : (int) $order;
+        $order -= 1;
+        $conf->setConfigOrder($firewall,$order);
+        $conf->writeConfig();
+        FirewallMessage::priority($firewall,$order + 1);
+        FirewallList::all();
     }
 }

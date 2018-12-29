@@ -46,5 +46,8 @@ class FirewallMessage{
     public static function firewall_delete_success($name){
         Output::printSuccess(CliStrings::get("firewall_delete_success",["name"=>$name]));
     }
+    public static function priority($firewall,$order){
+        Output::printSuccess(CliStrings::get("priority_changed",["name"=>$firewall,"order"=>$order]));
+    }
 
 }

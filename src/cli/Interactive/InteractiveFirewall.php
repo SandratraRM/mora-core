@@ -5,15 +5,19 @@ use Mora\Core\cli\Helpers\Input;
 use Mora\Core\cli\Console\CliStrings;
 class InteractiveFirewall 
 {
-    public static function create(&$name,&$targets){
+    public static function create(&$name,&$targets,&$order){
         if ($name == null) {
             goto ASK;
+        }elseif ($order == null) {
+            goto ASKORDER;
         }else{
             goto SET;
         }
         ASK:
             $name = Input::ask("ask_firewall_name");
             $targets = Input::ask("ask_firewall_targets");
+        ASKORDER:
+            $order = Input::ask("firewall_priority");
         SET:
             $targets =  explode(",",$targets);
     }
@@ -24,6 +28,17 @@ class InteractiveFirewall
         $name = Input::ask("ask_element_to_delete",["element"=>CliStrings::get("firewall")]);
         SET:
             $name = explode(",",$name);
+    }
+    public static function priority(&$name,&$order){
+        if ($name == null) {
+            goto ASK;
+        }elseif ($order == null) {
+            goto ASKORDER;
+        }
+        ASK:
+            $name = Input::ask("ask_firewall_name");
+        ASKORDER:
+            $order = Input::ask("firewall_priority");
     }
     public static function add_targets(&$name,&$targets){
         
