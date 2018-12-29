@@ -26,6 +26,9 @@ class Lang{
             $table->addRow(
                 [$name,$code]
             );
+            if ($code != array_keys($langs)[count($langs) -1]) {
+                $table->addSeparator();
+            }
         }
         print $table->getTable();
         print("\r\n");

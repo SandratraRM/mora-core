@@ -3,6 +3,7 @@ namespace Mora\Core\cli\Manager\Firewall;
 
 use Mora\Core\Control\Firewall;
 use Mora\Core\config\ArrayConfigManager;
+use Mora\Core\Cli\Helpers\Refactor;
 
 class FirewallEdit{
     private static $confPath = CONFIG . "/Firewalls.php";
@@ -26,6 +27,7 @@ class FirewallEdit{
                 $oldContent = file_get_contents($oldPath);
                 $newContent = str_replace($old."Firewall",$new."Firewall",$oldContent);
                 file_put_contents($oldPath,$newContent);
+                self::refactorFileContents($old,$new);
                 if ($conf->writeConfig() && rename($oldPath,$newPath)) {
                     FirewallMessage::rename_success($old,$new);
                 }
@@ -33,7 +35,11 @@ class FirewallEdit{
           
         }
     }
-
+    private static function refactorFileContents($old,$new){
+        $old = $old . "Firewall";
+        $new = $new . "Firewall";
+        Refactor::files_str_replace(APP,$old,$new,false);
+    }
     public static function addTarget($firewall,$targets){
         $conf = new ArrayConfigManager(self::$confPath);
         $key = ucfirst(strtolower($firewall));

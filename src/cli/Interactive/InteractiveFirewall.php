@@ -15,6 +15,10 @@ class InteractiveFirewall
         }
         ASK:
             $name = Input::ask("ask_firewall_name");
+            if(!Validator::validClassname($name)){
+                Output::printError(CliStrings::get("invalid_name"));
+                goto ASK;
+            }
             $targets = Input::ask("ask_firewall_targets");
         ASKORDER:
             $order = Input::ask("firewall_priority");
@@ -41,7 +45,6 @@ class InteractiveFirewall
             $order = Input::ask("firewall_priority");
     }
     public static function add_targets(&$name,&$targets){
-        
         if ($name == null) {
             goto ASKNAME;
         }elseif ($targets == null) {

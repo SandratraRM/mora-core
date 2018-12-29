@@ -29,5 +29,6 @@ class CommandHelp
             Output::print(CliStrings::replace("\r\n  <green>$subcommand <cyan>".$details["args"]."<nc>\r\n"));
             Output::print(CliStrings::get($details["desc"]),"\r\n");
         }
+        print("\r\n");
     }
 }

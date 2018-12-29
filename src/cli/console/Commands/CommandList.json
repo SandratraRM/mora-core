@@ -37,7 +37,7 @@
             "desc": "list_firewall_desc"
         },
         "delete": {
-            "args": "{name}1[,{name}2...]",
+            "args": "{firewall}1[,{firewall}2...]",
             "desc": "delete_firewall_desc"
         },
         "rename": {

@@ -4,6 +4,8 @@ namespace Mora\Core\Cli\Interactive;
 
 use Mora\Core\cli\Helpers\Input;
 use Mora\Core\cli\Console\CliStrings;
+use Mora\Core\Cli\Helpers\Validator;
+use Mora\Core\cli\Console\Output;
 
 class InteractiveController
 {
@@ -15,6 +17,11 @@ class InteractiveController
         }
         ASK:
         $name = Input::ask("ask_controller_name");
+        if(!Validator::validClassname($name)){
+            Output::printError(CliStrings::get("invalid_name"));
+            goto ASK;
+        }
+        ASKACTIONS:
         $actions = Input::ask("ask_controller_actions");
         SET:
         $actions = ($actions == "")? [] : explode(",",$actions);
