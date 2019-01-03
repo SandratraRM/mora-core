@@ -19,6 +19,7 @@ class Html
     {
         $this->html = $html;
     }
+
     private static function param_include($name,$params = []){
         $mainhtml = self::include($name);
         $search = [];
@@ -45,6 +46,7 @@ class Html
         }
         return  str_replace($search,$replace,$mainhtml);
     }
+    
     public static function include($name,$params = []){
         $html = file_get_contents(VIEW . "/Templates/$name".".html");
 
