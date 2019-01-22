@@ -7,6 +7,7 @@ use Mora\Core\cli\Console\Commands\CommandHelp;
 use Mora\Core\Cli\Interactive\InteractiveRoute;
 use Mora\Core\cli\Manager\Routes\CustomRoutesManager;
 use Mora\Core\cli\Manager\Routes\RouteNew;
+use Mora\Core\cli\Manager\Routes\RouteList;
 
 class RouteCli extends Controller
 {
@@ -33,7 +34,7 @@ class RouteCli extends Controller
 
     public function list($params)
     {
-        CustomRoutesManager::list();
+        RouteList::all();
     }
 
     public function delete($params)

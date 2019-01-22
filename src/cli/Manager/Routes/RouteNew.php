@@ -6,9 +6,8 @@ use Mora\Core\cli\Manager\Controller\ControllerMessage;
 
 class RouteNew
 {
-    private static $path = CONFIG . "/CustomRoutes.php";
     public static function set($args){
-        $config = new ArrayConfigManager(self::$path);
+        $config = new ArrayConfigManager(CustomRoutesManager::$path);
         foreach($args as $arg){
             $keyvalue = explode(":",$arg);
             if(count($keyvalue) == 2){

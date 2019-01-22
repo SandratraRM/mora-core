@@ -2,7 +2,9 @@
 namespace Mora\Core\Cli\Interactive;
 
 use Mora\Core\cli\Helpers\Input;
+use Mora\Core\Cli\Helpers\Validator;
 use Mora\Core\cli\Console\CliStrings;
+
 class InteractiveFirewall 
 {
     public static function create(&$name,&$targets,&$order){
@@ -23,7 +25,7 @@ class InteractiveFirewall
         ASKORDER:
             $order = Input::ask("firewall_priority");
         SET:
-            $targets =  explode(",",$targets);
+            $targets = ($targets == '')? [] : explode(",",$targets);
     }
     public static function delete(&$name){
         if ($name != null) {

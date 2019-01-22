@@ -12,4 +12,7 @@ class RouteMessage
     public static function wrong_format(){
         Output::printError(CliStrings::get("route_wrong_format"));
     }
+    public static function list(){
+        Output::printWarning(CliStrings::get("show_route_list"));
+    }
 }

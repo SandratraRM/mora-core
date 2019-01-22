@@ -9,13 +9,13 @@ use Mora\Core\cli\Helpers\SkeletonLoader;
 class FirewallNew  
 {
     public  static $configpath = CONFIG . "/Firewalls.php";
-    public static function create($name,$actions,$order){
+    public static function create($name,$targets,$order){
         $conf = new ArrayConfigManager(self::$configpath);
         $fname = ucfirst(strtolower($name));
         $order = ($order == "")? count($conf->getConfigsArray()) : (int) $order;
         $order -= 1;
         $fvalue = [];
-        $values = $actions;
+        $values = $targets;
         foreach ($values as $value) {
             $fvalue [] = ucfirst(strtolower($value));
         }
