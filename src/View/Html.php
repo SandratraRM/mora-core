@@ -1,8 +1,11 @@
 <?php
 namespace Mora\Core\View;
 
+interface HtmlBuilder{
+    function schema($data = []);
+}
 
-class Html
+abstract class Html implements HtmlBuilder
 {
 
     
@@ -10,8 +13,37 @@ class Html
      * @var string
      */
     protected $html;
-    
-    
+    protected $cachable = false;
+
+    public function __construct($data = []) {
+        if (!$this->cachable || !$this->hasCache()) {
+            $this->html = $this->schema($data);
+            if ($this->cachable) {
+                $this->makeCache();
+            }
+        }
+    }
+    protected function makeCache(){
+        if (!file_exists(CACHE)) {
+            mkdir(CACHE);
+        }
+        $filename = CACHE . "/" .md5(get_class($this)) . ".php";
+        return file_put_contents($filename,$this->html);
+    }
+    protected function clearCache(){
+        if ($this->hasCache()) {
+            return unlink(CACHE . "/" .md5(get_class($this)) . ".php");
+        }
+    }
+    protected function hasCache(){
+        return $this->cachable && file_exists( CACHE . "/" .md5(get_class($this)) . ".php");
+    }
+
+    protected function printCache(){
+        
+        require CACHE . "/" .md5(get_class($this)) . ".php";
+    }
+
     /**
      * @param string $html
      */
@@ -20,65 +52,19 @@ class Html
         $this->html = $html;
     }
 
-    private static function param_include($name,$params = []){
-        $mainhtml = self::include($name);
-        $search = [];
-        $replace = [];
-        foreach ($params as $k => $v){
-            if(is_array($v)){
-                preg_match('/\$'.$k."{{([^}]*)}}/",$mainhtml,$m);
-                $search [] = $m[0];
-                $subhtml = $m[1];
-                $html = '';
-                foreach ($v as $subarray){
-                    $subsearch = $subreplace = [];
-                    foreach ($subarray as $subkey => $subvalue){
-                        $subsearch []= '$'."$subkey" ;
-                        $subreplace []= $subvalue;
-                    }
-                    $html .= str_replace($subsearch,$subreplace,$subhtml);
-                }
-                $replace [] = (empty($v))? "": $html;
-            }else{
-                $search [] = '$'.$k;
-                $replace [] = $v;
-            }
-        }
-        return  str_replace($search,$replace,$mainhtml);
-    }
-    
-    public static function include($name,$params = []){
-        $html = file_get_contents(VIEW . "/Templates/$name".".html");
-
-        $included = [];
-        while(preg_match_all('/@include\(([^\(\)]+)\)/',$html,$matches)){
-            for($i = 0; $i<count($matches[0]);$i++){
-                if(!in_array($matches[1][$i],$included)){
-                    $included [] = $matches[1][$i];
-                    $path = VIEW . "/Templates/".$matches[1][$i].".html";
-                    if(file_exists($path))
-                        $content = file_get_contents($path);
-                    else
-                        $content = "<span style='vertical-align:middle;font-weight: 400;font-size: 11px'>(include $path impossible) </span>";
-                    $html = str_replace($matches[0][$i],$content,$html);
-
-                }
-                else{
-                    echo '<h4 style="padding: 5px;background: #c3000a;color: white">@include(parent) Vous ne pouvez pas inclure un fichier parent dans un fichier enfant</h4>';
-                    exit();
-                }
-
-            }
-        }
-        if(!empty($params))
-            $html = self::param_include($name,$params);
-        return $html;
-    }
     /**
      * @return string
      */
     public function getHTML(){
-        return $this->html;
+        if(!$this->hasCache())
+            return $this->html;
+        else {
+            ob_start();
+            require CACHE . "/" .md5(get_class($this)) . ".php";
+            $content = ob_get_contents();
+            ob_end_clean();
+            return $content;
+        }
     }
 
     /**
@@ -94,6 +80,11 @@ class Html
      *
      */
     public function printHTML(){
-        echo $this->html;
+        if ($this->cachable && $this->hasCache()) {
+            $this->printCache();
+        }
+        else {
+            echo $this->getHTML();
+        }
     }
 }

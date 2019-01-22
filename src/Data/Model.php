@@ -67,7 +67,6 @@ abstract class Model
     }
 
     /**
-     * Nety tsara le doc e!! 😂
      * @param string $cond
      * @param array $params
      * @param string $col

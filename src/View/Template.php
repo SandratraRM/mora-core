@@ -7,7 +7,7 @@ class Template
             $$key = $value;
         }
         ob_start();
-        include VIEW . "/Template/" . $name . ".php";
+        include VIEW . "/Templates/" . $name . ".php";
         $content = ob_get_contents();
         ob_end_clean();
         return $content;
