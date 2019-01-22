@@ -93,7 +93,7 @@
             "desc": "route_list_desc"
         },
         "delete": {
-            "args": "a1[,a2] ...",
+            "args": "a1[,a2 ...] ",
             "desc": "route_delete_desc"
         }
     },

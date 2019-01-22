@@ -4,7 +4,7 @@ namespace Mora\Core\cli\Manager\Routes;
 use Mora\Core\cli\Helpers\ArgParser;
 use Mora\Core\Config\ArrayConfigManager;
 
-class CustomRoutesManager{
+abstract class CustomRoutesManager{
     public  static $path = CONFIG . "/CustomRoutes.php";
 
     private static $mapping = [
@@ -14,12 +14,6 @@ class CustomRoutesManager{
 
     private static $default = "setRoutes";
 
-    use ArgParser;
-
-    public static function Interactive()
-    {
-        echo "interactive mode \r\n";
-    }
 
     public static function setRoutes($args = []){
         $config = new ArrayConfigManager(self::$path);

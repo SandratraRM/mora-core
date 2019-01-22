@@ -36,7 +36,7 @@ class ControllerDelete{
     }
     
     private static function deleteFirewallTarget($controller){
-        $path = FirewallManager::$configpath;
+        $path = FirewallManager::$path;
         $conf = new ArrayConfigManager($path);
         $firewalls = $conf->getConfigsArray();
         foreach ($firewalls as $firewall => $targets) {
