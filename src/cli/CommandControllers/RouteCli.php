@@ -2,6 +2,7 @@
 namespace Mora\Core\cli\CommandControllers;
 
 use Mora\Core\Control\Controller;
+use Mora\Core\Cli\Interactive\InteractiveRoute;
 
 class RouteCli extends Controller
 {
@@ -18,7 +19,8 @@ class RouteCli extends Controller
 
     public function set($params)
     {
-
+        InteractiveRoute::set($params);
+        
     }
 
     public function list($params)

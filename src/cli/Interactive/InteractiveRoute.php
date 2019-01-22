@@ -9,7 +9,7 @@ class InteractiveRoute{
             goto SET;
         }
         ASK:
-            
+            $routes = ask("set_routes");
         SET:
             
     }
