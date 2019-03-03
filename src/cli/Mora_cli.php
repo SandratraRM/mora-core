@@ -14,12 +14,13 @@ class Mora_cli{
         $args = array_values($args);
         self::ClicontrollerLoad(self::dispatch($args));
     }
+
     private static function dispatch($args){
         $action = "index";
         $params = [];
         switch (count($args)) {
             case 0:
-                $controller = "Welcome";
+                $controller = "welcome";
                 break;
             case 1:
                 $controller = $args[0];
@@ -36,6 +37,7 @@ class Mora_cli{
         $controller = ucfirst(strtolower($controller));
         return ["controller"=>$controller,"action"=>$action,"args"=>$params];
     }
+
     private static function ClicontrollerLoad($parts){
         $path = __DIR__ . "/CommandControllers/";
         $suffix = "Cli.php";

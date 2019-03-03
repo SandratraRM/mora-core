@@ -14,14 +14,19 @@ abstract class ConfigManager
     public function getConfigsArray(){
         return $this->configs;
     }
+
     public function setConfigsArray($configs)
     {
-        $this->configs = $configs;
+        if (is_array($configs)) {
+            $this->configs = $configs;
+            return true;
+        }else {
+            return false;
+        }
     }
+
     public function setConfigOrder($key,$order){
         $length = count($this->configs);
-        $order = ($length - 1 < $order) ? $length - 1 : $order;
-        $order = (0 > $order)? 0 : $order;
         $conf = $this->getConfigsArray();
         $value = $this->getConfig($key);
         unset($conf[$key]);
@@ -43,8 +48,14 @@ abstract class ConfigManager
             }
         }
         $conf = array_combine($newKeys,$newValues);
-        $this->setConfigsArray($conf);
+        return $this->setConfigsArray($conf);
     }
+
+    private static function sanitizeOrder(&$order){
+        $order = ($length - 1 < $order) ? $length - 1 : $order;
+        $order = (0 > $order)? 0 : $order;
+    }
+    
     public function hasConfig($key){
         return isset($this->configs[$key]);
     }
