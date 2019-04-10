@@ -20,7 +20,9 @@ class CustomRoute
      * @param $route
      * @return bool
      */
-    public static function routeExists($route){
+    public static function routeExists($route)
+    {
+        $route = ucfirst(strtolower($route));
         $conf = new ArrayConfigManager(self::$path);
         return $conf->hasConfig($route);
     }
@@ -29,8 +31,10 @@ class CustomRoute
      * @param $route
      * @return bool|string
      */
-    public static function getControllerName($route){
-       $conf = new ArrayConfigManager(self::$path);
-       return $conf->getConfig($route);
+    public static function getControllerName($route)
+    {
+        $route = ucfirst(strtolower($route));
+        $conf = new ArrayConfigManager(self::$path);
+        return $conf->getConfig($route);
     }
 }
