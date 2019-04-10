@@ -1,15 +1,15 @@
 <?php
 namespace Mora\Core\Control;
 
-use Mora\Core\Config\JsonConfigManager;
+use Mora\Core\Config\ArrayConfigManager;
 
 
 class FirewallChecker
 {
-    private static $path = CONFIG ."/Firewalls.json";
+    private static $path = CONFIG ."/Firewalls.php";
 
     private static function getFirewalls(){
-        $conf = new JsonConfigManager(self::$path);
+        $conf = new ArrayConfigManager(self::$path);
         return $conf->getConfigsArray();
     }
     public static function passedAll($controller){

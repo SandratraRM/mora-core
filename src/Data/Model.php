@@ -9,7 +9,6 @@ abstract class Model
     /**
      * @var PDO $connexion
      */
-    protected $connexion;
     protected $table;
     /**
      * Model constructor.
@@ -17,13 +16,6 @@ abstract class Model
      */
     public function __construct($connexion = null)
     {
-        if($connexion == null || !($connexion instanceof PDO)){
-            $db = new Database();
-            $this->connexion = $db->getConnex();
-        }
-        else{
-            $this->connexion = $connexion;
-        }
         $namespaces = explode("\\",get_class($this));
         $this->table = str_ireplace("Model","",$namespaces[count($namespaces) -1 ]);
     }
@@ -49,7 +41,7 @@ abstract class Model
      * @return null|PDO
      */
     protected function getConnexion(){
-        return $this->connexion;
+        return Database::getConnex();
     }
 
 
@@ -59,7 +51,7 @@ abstract class Model
      * @param array $params
      * @return mixed
      */
-    protected function Count($cond = '', $params = []){
+    protected function Count($cond = '', $params){
         return $this->readColumn('COUNT(*)',$cond,$params);
     }
 
@@ -69,19 +61,18 @@ abstract class Model
      * @param array $params
      * @return mixed
      */
-    protected function ReadColumn($col, $cond = "", $params = []){
+    protected function ReadColumn($col, $cond = "", $params){
         $res = $this->Select($col,$cond,$params);
         return $res->fetchColumn();
     }
 
     /**
-     * Nety tsara le doc e!! 😂
      * @param string $cond
      * @param array $params
      * @param string $col
      * @return array
      */
-    protected function ReadAll($cond = '', $params = [], $col = '*'){
+    protected function ReadAll($cond = '', $params, $col = '*'){
         $res = $this->Select($col,$cond,$params);
         return $res->fetchAll();
     }
@@ -92,13 +83,13 @@ abstract class Model
      * @param string $col
      * @return mixed
      */
-    protected function ReadFirst($cond = '', $params = [], $col = '*'){
+    protected function ReadFirst($cond = '', $params, $col = '*'){
 
         $res = $this->Select($col,$cond,$params);
         return $res->fetch();
     }
-    private function execute($sql, $params = []){
-        $res = $this->connexion->prepare($sql);
+    private function execute($sql, $params){
+        $res = Database::getConnex()->prepare($sql);
         $res->execute($params);
         return $res;
     }
@@ -151,13 +142,10 @@ abstract class Model
      * @return string
      */
     protected function lastId(){
-        return $this->connexion->lastInsertId();
+        return Database::getConnex()->lastInsertId();
     }
 
-    public function __destruct()
-    {
-        $this->connexion = null;
-    }
+    
 
 
 }

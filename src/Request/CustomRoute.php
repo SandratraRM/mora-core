@@ -2,7 +2,7 @@
 
 namespace Mora\Core\Request;
 
-use Mora\Core\Config\JsonConfigManager;
+use Mora\Core\Config\ArrayConfigManager;
 
 /**
  * Class CustomRoute
@@ -10,7 +10,7 @@ use Mora\Core\Config\JsonConfigManager;
  */
 class CustomRoute
 {
-    private static $path = CONFIG . "/CustomRoutes.json";
+    private static $path = CONFIG . "/CustomRoutes.php";
 
     /**
      * @return mixed
@@ -20,8 +20,10 @@ class CustomRoute
      * @param $route
      * @return bool
      */
-    public static function routeExists($route){
-        $conf = new JsonConfigManager(self::$path);
+    public static function routeExists($route)
+    {
+        $route = ucfirst(strtolower($route));
+        $conf = new ArrayConfigManager(self::$path);
         return $conf->hasConfig($route);
     }
 
@@ -29,8 +31,10 @@ class CustomRoute
      * @param $route
      * @return bool|string
      */
-    public static function getControllerName($route){
-       $conf = new JsonConfigManager(self::$path);
-       return $conf->getConfig($route);
+    public static function getControllerName($route)
+    {
+        $route = ucfirst(strtolower($route));
+        $conf = new ArrayConfigManager(self::$path);
+        return $conf->getConfig($route);
     }
 }

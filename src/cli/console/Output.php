@@ -2,23 +2,25 @@
 namespace Mora\Core\cli\Console;
 class Output{
     private static $map = [
-        "<black>" => "\x1b[30m",
-        "<red>" => "\x1b[31m",
-        "<green>" => "\x1b[32m",
-        "<yellow>" => "\x1b[33m",
-        "<blue>" => "\x1b[34m",
-        "<magenta>" => "\x1b[35m",
-        "<cyan>" => "\x1b[36m",
-        "<white>" => "\x1b[37m",
-        "<Bblack>" => "\x1b[40m",
-        "<Bred>" => "\x1b[41m",
-        "<Bgreen>" => "\x1b[42m",
-        "<Byellow>" => "\x1b[43m",
-        "<Bblue>" => "\x1b[44m",
-        "<Bmagenta>" => "\x1b[45m",
-        "<Bcyan>" => "\x1b[46m",
-        "<Bwhite>" => "\x1b[47m",
-        "<nc>" => "\x1b[0m",
+        "<b>" => "\033[1m",
+        "<u>" => "\033[1m",
+        "<black>" => "\033[30m",
+        "<red>" => "\033[31m",
+        "<green>" => "\033[32m",
+        "<yellow>" => "\033[33m",
+        "<blue>" => "\033[34m",
+        "<magenta>" => "\033[35m",
+        "<cyan>" => "\033[36m",
+        "<white>" => "\033[37m",
+        "<Bblack>" => "\033[40m",
+        "<Bred>" => "\033[41m",
+        "<Bgreen>" => "\033[42m",
+        "<Byellow>" => "\033[43m",
+        "<Bblue>" => "\033[44m",
+        "<Bmagenta>" => "\033[45m",
+        "<Bcyan>" => "\033[46m",
+        "<Bwhite>" => "\033[47m",
+        "<nc>" => "\033[0m",
         "<lb>" => "\r\n"
     ];
     public static function style($text){
@@ -65,5 +67,18 @@ class Output{
                 "<nc>"
             );
         }
+    }
+    public static function table($rows,$head = []){
+        $tbl = new \Console_Table();
+        if (!empty($head)) {
+            $tbl->setHeaders($head);
+        } 
+        foreach ($rows as $key => $row) {
+            $tbl->addRow($row);
+            if($key < count($rows) - 1)
+            $tbl->addSeparator();
+        }
+        $tbl->setBorder(CONSOLE_TABLE_BORDER_ASCII);
+        return $tbl->getTable();
     }
 }
