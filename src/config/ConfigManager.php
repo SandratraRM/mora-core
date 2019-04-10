@@ -29,6 +29,7 @@ abstract class ConfigManager
         $length = count($this->configs);
         $conf = $this->getConfigsArray();
         $value = $this->getConfig($key);
+        self::sanitizeOrder($order);
         unset($conf[$key]);
         $keys = array_keys($conf);
         $values = array_values($conf);
@@ -55,7 +56,7 @@ abstract class ConfigManager
         $order = ($length - 1 < $order) ? $length - 1 : $order;
         $order = (0 > $order)? 0 : $order;
     }
-    
+
     public function hasConfig($key){
         return isset($this->configs[$key]);
     }
