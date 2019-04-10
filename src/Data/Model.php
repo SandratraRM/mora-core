@@ -51,7 +51,7 @@ abstract class Model
      * @param array $params
      * @return mixed
      */
-    protected function Count($cond = '', $params){
+    protected function Count($cond = '', $params = []){
         return $this->readColumn('COUNT(*)',$cond,$params);
     }
 
@@ -61,7 +61,7 @@ abstract class Model
      * @param array $params
      * @return mixed
      */
-    protected function ReadColumn($col, $cond = "", $params){
+    protected function ReadColumn($col, $cond = "", $params = []){
         $res = $this->Select($col,$cond,$params);
         return $res->fetchColumn();
     }
@@ -72,7 +72,7 @@ abstract class Model
      * @param string $col
      * @return array
      */
-    protected function ReadAll($cond = '', $params, $col = '*'){
+    protected function ReadAll($cond = '', $params = [], $col = '*'){
         $res = $this->Select($col,$cond,$params);
         return $res->fetchAll();
     }
@@ -83,7 +83,7 @@ abstract class Model
      * @param string $col
      * @return mixed
      */
-    protected function ReadFirst($cond = '', $params, $col = '*'){
+    protected function ReadFirst($cond = '', $params = [], $col = '*'){
 
         $res = $this->Select($col,$cond,$params);
         return $res->fetch();
@@ -106,10 +106,10 @@ abstract class Model
      * @param array $paramss
      * @return bool|\PDOStatement
      */
-    protected function Update($set, $condition, $paramss)
+    protected function Update($set, $condition, $params)
     {
         $sql = "UPDATE $this->table SET $set $condition";
-        return $this->execute($sql,$paramss);
+        return $this->execute($sql,$params);
     }
 
     /**
@@ -117,10 +117,10 @@ abstract class Model
      * @param array $paramss
      * @return bool|\PDOStatement
      */
-    protected function Delete($constraint, $paramss)
+    protected function Delete($constraint, $params)
     {
         $sql = "DELETE FROM $this->table ". $constraint;
-        return $this->execute($sql,$paramss);
+        return $this->execute($sql,$params);
     }
 
 
