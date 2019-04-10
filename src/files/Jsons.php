@@ -1,5 +1,5 @@
 <?php
-namespace Mora\Core\files;
+namespace Mora\Core\Files;
 class Jsons{
     public static function fromJsonFileToArray($path){
         return \json_decode(\file_get_contents($path),true);

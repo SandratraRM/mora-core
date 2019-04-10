@@ -1,6 +1,6 @@
 <?php
 
-namespace Mora\Core\files;
+namespace Mora\Core\Files;
 
 class Arrays
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Mora\Core\config;
+namespace Mora\Core\Config;
 
 use Mora\Core\files\Arrays;
 
