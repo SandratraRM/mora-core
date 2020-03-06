@@ -4,6 +4,7 @@ namespace Mora\Core\Files;
 
 class Arrays
 {
+    
     public static function fromArrayFileToArray($path){
         return require $path;
     }

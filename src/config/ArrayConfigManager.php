@@ -2,7 +2,7 @@
 
 namespace Mora\Core\Config;
 
-use Mora\Core\files\Arrays;
+use Mora\Core\Files\Arrays;
 
 
 class ArrayConfigManager extends ConfigManager
