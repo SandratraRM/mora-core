@@ -14,7 +14,7 @@ abstract class Model
      * Model constructor.
      * @param null|PDO $connexion
      */
-    public function __construct($connexion = null)
+    public function __construct()
     {
         $namespaces = explode("\\",get_class($this));
         $this->table = str_ireplace("Model","",$namespaces[count($namespaces) -1 ]);
@@ -51,7 +51,7 @@ abstract class Model
      * @param array $params
      * @return mixed
      */
-    protected function count($cond = '', $params){
+    protected function count($cond = '', $params = []){
         return $this->readColumn('COUNT(*)',$cond,$params);
     }
 
@@ -61,7 +61,7 @@ abstract class Model
      * @param array $params
      * @return mixed
      */
-    protected function readColumn($col, $cond = "", $params){
+    protected function readColumn($col, $cond = "", $params = []){
         $res = $this->Select($col,$cond,$params);
         return $res->fetchColumn();
     }
@@ -72,7 +72,7 @@ abstract class Model
      * @param string $col
      * @return array
      */
-    protected function readAll($cond = '', $params, $col = '*'){
+    protected function readAll($cond = '', $params = [], $col = '*'){
         $res = $this->Select($col,$cond,$params);
         return $res->fetchAll();
     }
@@ -83,7 +83,7 @@ abstract class Model
      * @param string $col
      * @return mixed
      */
-    protected function readFirst($cond = '', $params, $col = '*'){
+    protected function readFirst($cond = '', $params = [], $col = '*'){
 
         $res = $this->Select($col,$cond,$params);
         return $res->fetch();
@@ -106,10 +106,10 @@ abstract class Model
      * @param array $paramss
      * @return bool|\PDOStatement
      */
-    protected function update($set, $condition, $paramss)
+    protected function update($set, $condition, $params)
     {
         $sql = "UPDATE $this->table SET $set $condition";
-        return $this->execute($sql,$paramss);
+        return $this->execute($sql,$params);
     }
 
     /**
@@ -146,6 +146,4 @@ abstract class Model
     }
 
     
-
-
 }
