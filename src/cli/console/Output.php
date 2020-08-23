@@ -24,7 +24,8 @@ class Output{
         "<lb>" => "\r\n"
     ];
     public static function style($text){
-        return str_replace(array_keys(self::$map),array_values(self::$map),$text);
+
+        return str_replace(array_keys(self::$map),USE_CLI_COLORS ? array_values(self::$map) : "",$text);
     }
     public static function print(...$texts){
         foreach($texts as $text){

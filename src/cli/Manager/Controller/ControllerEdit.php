@@ -82,7 +82,7 @@ class ControllerEdit
     }
     private static function refactorFirewall($old, $new)
     {
-        $confPath = FirewallManager::$configpath;
+        $confPath = FirewallManager::$path;
         $conf = new ArrayConfigManager($confPath);
         $firewalls = $conf->getConfigsArray();
         foreach ($firewalls as $firewall => $targets) {

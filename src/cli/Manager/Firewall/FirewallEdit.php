@@ -6,10 +6,10 @@ use Mora\Core\config\ArrayConfigManager;
 use Mora\Core\Cli\Helpers\Refactor;
 
 class FirewallEdit{
-    private static $confPath = CONFIG . "/Firewalls.php";
+    private static $path = CONFIG . "/Firewalls.php";
 
     public static function rename($old,$new){
-        $conf = new ArrayConfigManager(self::$confPath);
+        $conf = new ArrayConfigManager(self::$path);
         $new = ucfirst(strtolower($new));
         $old = ucfirst(strtolower($old));
         $oldPath = FIREWALL . "/$old"."Firewall.php";
@@ -41,7 +41,7 @@ class FirewallEdit{
         Refactor::files_str_replace(APP,$old,$new,false);
     }
     public static function addTarget($firewall,$targets){
-        $conf = new ArrayConfigManager(self::$confPath);
+        $conf = new ArrayConfigManager(self::$path);
         $key = ucfirst(strtolower($firewall));
         if (file_exists(FIREWALL. "/{$key}Firewall.php")) {
             if ($conf->hasConfig($key)) {
@@ -64,7 +64,7 @@ class FirewallEdit{
         }
     }
     public static function priority($firewall,$order){
-        $conf = new ArrayConfigManager(self::$confPath);
+        $conf = new ArrayConfigManager(self::$path);
         $length = count($conf->getConfigsArray());
         $firewall = ucfirst(strtolower($firewall));
         if (!file_exists(FIREWALL . "/{$firewall}Firewall.php")) {

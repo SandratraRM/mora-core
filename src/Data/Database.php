@@ -2,8 +2,9 @@
 namespace Mora\Core\Data;
 use PDO;
 class Database{
+    
     public static function setConnex($conf = []) {
-        $conf = (empty($conf))?require CONFIG . "/DatabaseConf.php":$conf;
+        $conf = (empty($conf))? require CONFIG . "/DatabaseConf.php": $conf;
         $type = $conf["driver"];
         $host = $conf["host"];
         $port = $conf["port"];
@@ -19,6 +20,7 @@ class Database{
             echo $e->getMessage();
         }
     }
+
     public static function getConnex()
     {
         if(!isset($GLOBALS["PDOConnexion"] )){

@@ -51,7 +51,7 @@ abstract class Model
      * @param array $params
      * @return mixed
      */
-    protected function Count($cond = '', $params){
+    protected function count($cond = '', $params){
         return $this->readColumn('COUNT(*)',$cond,$params);
     }
 
@@ -61,7 +61,7 @@ abstract class Model
      * @param array $params
      * @return mixed
      */
-    protected function ReadColumn($col, $cond = "", $params){
+    protected function readColumn($col, $cond = "", $params){
         $res = $this->Select($col,$cond,$params);
         return $res->fetchColumn();
     }
@@ -72,7 +72,7 @@ abstract class Model
      * @param string $col
      * @return array
      */
-    protected function ReadAll($cond = '', $params, $col = '*'){
+    protected function readAll($cond = '', $params, $col = '*'){
         $res = $this->Select($col,$cond,$params);
         return $res->fetchAll();
     }
@@ -83,7 +83,7 @@ abstract class Model
      * @param string $col
      * @return mixed
      */
-    protected function ReadFirst($cond = '', $params, $col = '*'){
+    protected function readFirst($cond = '', $params, $col = '*'){
 
         $res = $this->Select($col,$cond,$params);
         return $res->fetch();
@@ -94,7 +94,7 @@ abstract class Model
         return $res;
     }
 
-    private function Select($col,$cond,$params){
+    private function select($col,$cond,$params){
         $sql = "SELECT $col FROM $this->table $cond";
         $res = $this->execute($sql,$params);
         return $res;
@@ -106,7 +106,7 @@ abstract class Model
      * @param array $paramss
      * @return bool|\PDOStatement
      */
-    protected function Update($set, $condition, $paramss)
+    protected function update($set, $condition, $paramss)
     {
         $sql = "UPDATE $this->table SET $set $condition";
         return $this->execute($sql,$paramss);
@@ -117,7 +117,7 @@ abstract class Model
      * @param array $paramss
      * @return bool|\PDOStatement
      */
-    protected function Delete($constraint, $paramss)
+    protected function delete($constraint, $paramss)
     {
         $sql = "DELETE FROM $this->table ". $constraint;
         return $this->execute($sql,$paramss);
@@ -129,7 +129,7 @@ abstract class Model
      * @param string $fields
      * @return bool|\PDOStatement
      */
-    protected function Insert($values, $fields  = "")
+    protected function insert($values, $fields  = "")
     {
         $fields = ($fields == '')? "" : "($fields)";
         $placeholders = "?" . str_repeat(",?",count($values) - 1);

@@ -14,7 +14,7 @@ class CommandHelp
         $conf = new JsonConfigManager(self::$path);
         $commands = $conf->getConfigsArray();
         foreach ($commands as $command => $subcommands) {
-            Output::print("\r\n\033[1;4;34m$command<nc>","\r\n");
+            Output::print("\r\n<blue>$command<nc>","\r\n");
             foreach ($subcommands as $subcommand => $details) {
                 Output::print(CliStrings::replace("\r\n  <green>$subcommand <cyan>".$details["args"]."<nc>\r\n"));
                 Output::print(CliStrings::get($details["desc"]),"\r\n");
