@@ -103,7 +103,7 @@ abstract class Model
     /**
      * @param string $set
      * @param string $condition
-     * @param array $paramss
+     * @param array $params
      * @return bool|\PDOStatement
      */
     protected function update($set, $condition, $params)
@@ -114,13 +114,13 @@ abstract class Model
 
     /**
      * @param string $constraint
-     * @param array $paramss
+     * @param array $params
      * @return bool|\PDOStatement
      */
-    protected function delete($constraint, $paramss)
+    protected function delete($constraint, $params)
     {
         $sql = "DELETE FROM $this->table ". $constraint;
-        return $this->execute($sql,$paramss);
+        return $this->execute($sql,$params);
     }
 
 
