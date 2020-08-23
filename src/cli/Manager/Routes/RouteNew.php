@@ -15,7 +15,7 @@ class RouteNew
                 if (!file_exists($controller)) {
                     ControllerMessage::controller_not_found($keyvalue[1]);
                 }else {
-                    $config->setConfig($keyvalue[0],ucfirst(strtolower($keyvalue[1])));
+                    $config->setConfig(ucfirst(strtolower($keyvalue[0])),ucfirst(strtolower($keyvalue[1])));
                     RouteMessage::set_success($keyvalue[0],$keyvalue[1]);
                 }
             }else {
