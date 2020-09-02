@@ -2,11 +2,7 @@
 namespace Mora\Core\Cli\Manager\Firewall;
 
 use Mora\Core\Config\ArrayConfigManager;
-use Mora\Core\Cli\Helpers\Input;
-use Mora\Core\Cli\Manager\Controller\ControllerMessage;
-use Mora\Core\Control\Firewall;
-
-class Firewalldelete{
+class FirewallDelete{
     private static $path = CONFIG . "/Firewalls.php";
 
     private static function execfirewall($firewall){

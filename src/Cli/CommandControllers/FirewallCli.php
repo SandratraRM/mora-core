@@ -6,7 +6,7 @@ use Mora\Core\Cli\Interactive\InteractiveFirewall;
 use Mora\Core\Cli\Manager\Firewall\FirewallNew;
 use Mora\Core\Cli\Console\Commands\CommandHelp;
 use Mora\Core\Cli\Manager\Firewall\FirewallList;
-use Mora\Core\Cli\Manager\Firewall\Firewalldelete;
+use Mora\Core\Cli\Manager\Firewall\FirewallDelete;
 use Mora\Core\Cli\Helpers\Confirm;
 use Mora\Core\Cli\Interactive\InteractiveController;
 use Mora\Core\Cli\Manager\Firewall\FirewallEdit;
@@ -44,7 +44,7 @@ class FirewallCli extends Controller
     {
         InteractiveFirewall::delete($params[0]);
         if(Confirm::delete())
-        Firewalldelete::firewall($params[0]);
+        FirewallDelete::firewall($params[0]);
     }
 
     public function rename($params)
@@ -66,7 +66,7 @@ class FirewallCli extends Controller
     {
         InteractiveFirewall::add_targets($params[0],$params[1]);
         if (Confirm::delete()) {
-            Firewalldelete::target($params[0],$params[1]);
+            FirewallDelete::target($params[0],$params[1]);
         }
     }
 
