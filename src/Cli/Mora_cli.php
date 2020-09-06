@@ -43,7 +43,7 @@ class Mora_cli{
         $suffix = "Cli.php";
         $controllerPath = $path.$parts["controller"].$suffix;
         if (file_exists($controllerPath)) {
-            $controllerClass = "Mora\\Core\\cli\\CommandControllers\\".$parts["controller"]."Cli";
+            $controllerClass = "Mora\\Core\\Cli\\CommandControllers\\".$parts["controller"]."Cli";
             self::execController($controllerClass,$parts["action"],$parts["args"]);
         }else{
             echo("tsy ao");
