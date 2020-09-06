@@ -1,7 +1,7 @@
 <?php
 namespace Mora\Core\Cli\Manager\Routes;
 
-use Mora\Core\config\ArrayConfigManager;
+use Mora\Core\Config\ArrayConfigManager;
 
 class RouteDelete
 {

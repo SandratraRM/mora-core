@@ -4,7 +4,7 @@ namespace Mora\Core\Cli\Manager\Welcome;
 use Mora\Core\Cli\Console\Output;
 use Mora\Core\Cli\Console\CliStrings;
 use Mora\Core\Cli\Helpers\SkeletonLoader;
-use Mora\Core\config\JsonConfigManager;
+use Mora\Core\Config\JsonConfigManager;
 use Mora\Core\Cli\Console\Commands\CommandHelp;
 use Mora\Core\Cli\CommandControllers\LangCli;
 

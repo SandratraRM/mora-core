@@ -4,7 +4,7 @@ namespace Mora\Core\Cli\Console\Lang;
 use Mora\Core\Cli\Console\CliConfig;
 use Mora\Core\Cli\Console\Output;
 use Mora\Core\Cli\Console\CliStrings;
-use Mora\Core\config\JsonConfigManager;
+use Mora\Core\Config\JsonConfigManager;
 
 class Lang{
     public static function changeLang($lang){

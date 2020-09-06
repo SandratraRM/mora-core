@@ -2,7 +2,7 @@
 namespace Mora\Core\Cli\Manager\Firewall;
 
 use Mora\Core\Control\Firewall;
-use Mora\Core\config\ArrayConfigManager;
+use Mora\Core\Config\ArrayConfigManager;
 use Mora\Core\Cli\Helpers\Refactor;
 
 class FirewallEdit{
