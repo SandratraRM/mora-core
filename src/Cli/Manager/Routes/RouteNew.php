@@ -11,7 +11,7 @@ class RouteNew
         foreach($args as $arg){
             $keyvalue = explode(":",$arg);
             if(count($keyvalue) == 2){
-                $controller = CONTROLLER . "/".$keyvalue[1]."Controller.php";
+                $controller = CONTROLLER . "/".ucfirst(strtolower($keyvalue[1]))."Controller.php";
                 if (!file_exists($controller)) {
                     ControllerMessage::controller_not_found($keyvalue[1]);
                 }else {
