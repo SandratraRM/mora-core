@@ -1,7 +1,7 @@
 <?php
 namespace Mora\Core\Config;
 
-use Mora\Core\files\Jsons;
+use Mora\Core\Files\Jsons;
 class JsonConfigManager extends ConfigManager{
 
     public function __construct($path = "") {
