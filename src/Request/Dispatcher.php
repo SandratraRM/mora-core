@@ -21,15 +21,13 @@ class Dispatcher
         $args = [];
         switch (count($requests_parts)){
             case 1:
-                $controller = (!empty($_GET))? "" : $controller;
+                $controller =  $controller;
                 break;
             case 2:
-                $action = (!empty($_GET))? "index" : $requests_parts[1];
+                $action = $requests_parts[1];
                 break;
             default:
                 $action = $requests_parts[1];
-                if(!empty($_GET))
-                    array_pop($requests_parts);
                 $args = array_slice($requests_parts,2);
                 break;
         }

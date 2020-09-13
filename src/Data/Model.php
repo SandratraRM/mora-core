@@ -44,7 +44,6 @@ abstract class Model
         return Database::getConnex();
     }
 
-
     /**
      * Shortcut for Counting
      * @param string $cond
