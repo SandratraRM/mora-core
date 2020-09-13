@@ -13,7 +13,7 @@ interface ControllerActions{
     public function index($params);
 
     /**This method is used to set some come control when calling one of the actions
-     * It should call the ActionNotFound method
+     * It should call the actionNotFound method
      * @param string $action The action name
      * @param array $params An array that olds the arguments part of the request
      * @return mixed
@@ -25,5 +25,5 @@ interface ControllerActions{
      * @param array $params An array that olds the arguments part of the request
      * @return mixed
      */
-    public function ActionNotFound($actionName, $params);
+    public function actionNotFound($actionName, $params);
 }

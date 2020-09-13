@@ -9,7 +9,7 @@ namespace Mora\Core\Control;
 abstract class Controller implements ControllerActions
 {
 
-    /**Execute the action if it exists, else calling ActionNotFound method
+    /**Execute the action if it exists, else calling actionNotFound method
      * @param string $action The action name
      * @param array $params An array that olds the arguments part of the request
      */
@@ -18,7 +18,7 @@ abstract class Controller implements ControllerActions
             $this->$action($params);
         }
         else{
-            $this->ActionNotFound($action,$params);
+            $this->actionNotFound($action,$params);
         }
     }
 

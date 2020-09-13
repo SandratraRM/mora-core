@@ -14,7 +14,7 @@ class LangCli extends Controller
         CommandHelp::printCommand("lang");
     }
 
-    public function ActionNotFound($actionName, $params)
+    public function actionNotFound($actionName, $params)
     {
         
     }

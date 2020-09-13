@@ -1,6 +1,7 @@
 <?php
 namespace Mora\Core\Request;
 
+use FlorianWolters\Component\Core\StringUtils;
 
 class Dispatcher
 {
@@ -8,6 +9,8 @@ class Dispatcher
     private static function sliceRequest(){
         $request = str_ireplace(WEBROOT,"",$_SERVER["REQUEST_URI"]);
         $request = trim($request,"/");
+        $request = StringUtils::substringBefore($request,"?");
+        $request = StringUtils::substringBefore($request,"#");
         return explode("/",$request);
     }
 

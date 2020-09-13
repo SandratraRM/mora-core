@@ -14,7 +14,7 @@ class WelcomeCli extends Controller
         WelcomeList::decide();
     }
 
-    public function ActionNotFound($actionName, $params)
+    public function actionNotFound($actionName, $params)
     {
         $this->index($params);
     }

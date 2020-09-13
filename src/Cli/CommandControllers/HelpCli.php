@@ -11,7 +11,7 @@ class HelpCli extends Controller
 
     }
 
-    public function ActionNotFound($actionName, $params)
+    public function actionNotFound($actionName, $params)
     {
         
     }

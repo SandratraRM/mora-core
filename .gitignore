@@ -2,3 +2,4 @@ autoload.php
 App/
 mora
 Traduction.php
+vendor

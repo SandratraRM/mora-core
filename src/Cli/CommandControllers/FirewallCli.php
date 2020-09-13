@@ -20,7 +20,7 @@ class FirewallCli extends Controller
         CommandHelp::printCommand("firewall");
     }
 
-    public function ActionNotFound($actionName, $params)
+    public function actionNotFound($actionName, $params)
     {
         
     }

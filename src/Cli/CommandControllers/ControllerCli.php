@@ -25,7 +25,7 @@ class ControllerCli extends Controller
         Output::print("\r\n");
     }
 
-    public function ActionNotFound($actionName, $params)
+    public function actionNotFound($actionName, $params)
     {
 
     }
